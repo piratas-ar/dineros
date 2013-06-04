@@ -10,6 +10,9 @@ source 'https://rubygems.org'
 # Optional JSON codec (faster performance)
 # gem 'oj'
 
+# debug
+gem 'pry'
+
 # Project requirements
 gem 'rake'
 
@@ -36,3 +39,6 @@ gem 'padrino', '0.11.2'
 # %w(core gen helpers cache mailer admin).each do |g|
 #   gem 'padrino-' + g, '0.11.2'
 # end
+
+gem 'gravatarify'
+gem 'money'
