@@ -1,8 +1,11 @@
 -# encoding: utf-8
 .hero-unit
-  -if @total
+  -if @total > 0
     %h1= "$#{@total}"
-  -if not @total
+  -elsif @total < 0
+    %h1= "$#{@total}"
+    %p Estamos cagados!
+  -else
     %h1 No hay un choto
   %p.pull-right
     %a.btn.btn-primary{:href => url(:dinero, :cargar)} Yo tengo algo!
