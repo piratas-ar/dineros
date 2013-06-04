@@ -7,6 +7,9 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
+require 'money'
+Money.default_currency = Money::Currency.new("ARS")
+
 ##
 # ## Enable devel logging
 #
