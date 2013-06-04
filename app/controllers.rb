@@ -1,23 +1,20 @@
+require 'pry'
 Dineros::App.controllers  do
-  
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
+  get :index, :map => '/' do
+    @dineros = Dinero.all
 
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
+# Se convierten a centavos...
+#   @total = Money.new(0, "ARS")
+#   @dineros.each do |dinero|
+#     @total = @total + Money.new(dinero.cantidad, "ARS")
+#   end
+    @total = 0
+    @dineros.each do |dinero|
+      @total = @total + dinero.cantidad
+    end
 
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
+    Haml::Helpers.send(:include, Gravatarify::Helper)
 
-  # get '/example' do
-  #   'Hello world!'
-  # end
-  
-
+    render 'dinero/index'
+  end
 end

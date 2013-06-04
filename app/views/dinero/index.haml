@@ -1,0 +1,18 @@
+-# encoding: utf-8
+.hero-unit
+  -if @total
+    %h1= "$#{@total}"
+  -if not @total
+    %h1 No hay un choto
+  %p.pull-right
+    %a.btn.btn-primary{:href => url(:dinero, :cargar)} Yo tengo algo!
+
+.row
+  .span6
+    =@dineros.each do |dinero|
+      .media
+        %a{:class => 'pull-left', :href => '#'}
+          %img{ gravatar_attrs(dinero.responsable, :size => 70) }
+        .media-body
+          %h4= "$#{dinero.cantidad}"
+          %p= dinero.comentario

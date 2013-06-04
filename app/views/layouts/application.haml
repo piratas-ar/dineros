@@ -1,0 +1,16 @@
+-# encoding: utf-8
+!!! 5
+%html{'xml:lang' => 'es_AR', 'xmlns' => 'http://www.w3.org/1999/xhtml'}
+  %head
+    %meta{charset: "utf-8"}
+    %title Dineros!
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+
+    %link{href: '/stylesheets/bootstrap.css',
+          media: 'screen', rel: 'stylesheet', type: 'text/css'}
+    %link{href: '/stylesheets/bootstrap-responsive.css',
+          media: 'screen', rel: 'stylesheet', type: 'text/css'}
+
+  %body
+    .container
+      = yield

@@ -1,0 +1,14 @@
+-# encoding: utf-8
+-form_for :dinero, url(:dinero, :crear), :class => 'form-horizontal' do |f|
+  .control-group
+    =f.email_field :responsable,
+                  :placeholder => "Tu mail"
+  .control-group
+    =f.text_field :cantidad,
+                  :placeholder => "Dineros!"
+    %span.help-inline También se aceptan negativos :c
+  .control-group
+    =f.text_area :comentario,
+                 :placeholder => "Una descripción"
+  .control-group
+    =f.submit :crear, :class => 'btn btn-primary'
