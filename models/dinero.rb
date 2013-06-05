@@ -3,7 +3,8 @@ class Dinero
 
   # property <name>, <type>
   property :id, Serial
-  property :cantidad, Float, :required => true
+  property :cantidad, Integer, :required => true
   property :responsable, String, :required => true, :format => :email_address
   property :comentario, Text
+  property :fecha, DateTime
 end
