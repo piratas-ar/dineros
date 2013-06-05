@@ -4,9 +4,9 @@ Dineros::App.controllers  do
 # TODO paginar
     @dineros = Dinero.all
 # Mostrar el total
-    @total = Dinero.sum("cantidad")
+    @total = Dinero.sum("cantidad") / 100
 # Obtener un listado de los que tienen plata en este momento
-    @quien_los_tiene = Dinero.select("responsable, sum(cantidad) as subtotal")
+    @quien_los_tiene = Dinero.select("responsable, sum(cantidad) / 100 as subtotal")
                        .group("responsable").having("subtotal > 0")
 
 # Incluir funciones para gravatar
