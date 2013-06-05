@@ -7,7 +7,6 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-require 'money'
 Money.default_currency = Money::Currency.new("ARS")
 
 ##
@@ -43,7 +42,7 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
-  DataMapper.finalize
+  ActiveRecord::Base.auto_upgrade!
 end
 
 Padrino.load!
