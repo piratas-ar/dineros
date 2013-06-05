@@ -3,10 +3,11 @@
   .control-group
     =f.email_field :responsable,
                   :placeholder => "Tu mail"
+    %span.help-inline Registrar la dirección de correo en <a href="https://gravatar.com">gravatar.com</a> para tener la fotito
   .control-group
     =f.text_field :cantidad,
                   :placeholder => "Dineros!"
-    %span.help-inline También se aceptan negativos :c
+    %span.help-inline También se aceptan negativos :c. Si nos pasamos dineros entre nosotros, uno tiene que anotar negativo y el otro positivo
   .control-group
     =f.text_area :comentario,
                  :placeholder => "Una descripción"
