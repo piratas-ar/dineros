@@ -1,10 +1,7 @@
-class Dinero
-  include DataMapper::Resource
+class Dinero < ActiveRecord::Base
+  timestamps
 
-  # property <name>, <type>
-  property :id, Serial
-  property :cantidad, Integer, :required => true
-  property :responsable, String, :required => true, :format => :email_address
-  property :comentario, Text
-  property :fecha, DateTime
+  property :cantidad, :as => :integer, :null => false
+  property :responsable, :null => false
+  property :comentario, :as => :text
 end
