@@ -1,3 +1,4 @@
+# TODO devolver cantidad como instancias de Money
 class Dinero < ActiveRecord::Base
   timestamps
   validates_format_of :responsable,
