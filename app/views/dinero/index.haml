@@ -9,6 +9,10 @@
     %h1 No hay un choto
   %p.pull-right
     %a.btn.btn-primary{:href => url(:dinero, :cargar)} Yo tengo algo!
+  .media
+    -@quien_los_tiene.each do |quien|
+      %img{ gravatar_attrs(quien.responsable, :size => 25),
+            :alt => %"#{quien.responsable} tiene $#{quien.subtotal}" }
 
 .row
   .span6
@@ -17,5 +21,5 @@
         %a{:class => 'pull-left', :href => '#'}
           %img{ gravatar_attrs(dinero.responsable, :size => 70) }
         .media-body
-          %h4= "$#{dinero.cantidad}"
+          %h4= "$#{dinero.cantidad / 100}"
           %p= dinero.comentario

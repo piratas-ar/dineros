@@ -1,5 +1,5 @@
 ---
-:orm: datamapper
+:orm: minirecord
 :test: none
 :mock: none
 :script: jquery

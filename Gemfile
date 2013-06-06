@@ -18,14 +18,8 @@ gem 'rake'
 
 # Component requirements
 gem 'haml'
-gem 'dm-sqlite-adapter'
-gem 'dm-validations'
-gem 'dm-timestamps'
-gem 'dm-migrations'
-gem 'dm-constraints'
-gem 'dm-aggregates'
-gem 'dm-types'
-gem 'dm-core'
+gem 'mini_record'
+gem 'sqlite3'
 
 # Test requirements
 

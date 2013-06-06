@@ -3,7 +3,10 @@
   .control-group
     =f.email_field :responsable,
                   :placeholder => "Tu mail"
-    %span.help-inline Registrar la dirección de correo en <a href="https://gravatar.com">gravatar.com</a> para tener la fotito
+    %span.help-inline
+      Registrar la dirección de correo en
+      %a{:href => "https://gravatar.com"} gravatar.com
+      para tener la fotito
   .control-group
     =f.text_field :cantidad,
                   :placeholder => "Dineros!"

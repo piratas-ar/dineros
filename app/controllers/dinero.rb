@@ -1,5 +1,4 @@
-require 'pry'
-require 'gravatarify'
+require 'time'
 Dineros::App.controllers :dinero do
 
   get :index do
@@ -16,7 +15,8 @@ Dineros::App.controllers :dinero do
 
   post :crear do
     @dinero = Dinero.new(params[:dinero])
-    @dinero.cantidad = params[:dinero][:cantidad].to_f
+# TODO esto podría ir en la validación del modelo...
+    @dinero.cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
 
     if @dinero.save
       redirect '/'
