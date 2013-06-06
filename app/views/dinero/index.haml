@@ -16,7 +16,7 @@
 
 .row
   .span6
-    -@dineros.each do |dinero|
+    -@dineros.reverse_each do |dinero|
       .media
         %a{:class => 'pull-left', :href => '#'}
           %img{ gravatar_attrs(dinero.responsable, :size => 70) }
