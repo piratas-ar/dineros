@@ -9,6 +9,8 @@
     %h1 No hay un choto
   %p.pull-right
     %a.btn.btn-primary{:href => url(:dinero, :cargar)} Yo tengo algo!
+    %small
+      %a{:href => "http://repo.hackcoop.com.ar/dineros.git/"} código fuente
   .media
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, :size => 25),
