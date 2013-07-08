@@ -12,7 +12,7 @@
   .media
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, :size => 25),
-            :title => %"#{quien.responsable} tiene $#{quien.subtotal}" }
+            :title => %"#{quien.responsable.split("@")[0]} tiene $#{quien.subtotal}" }
 
 .row
   .span6
@@ -21,10 +21,10 @@
         %a{:class => 'pull-left', :href => '#'}
           %img{ gravatar_attrs(dinero.responsable,
                                :size => 70,
-                               :title => dinero.responsable ) }
+                               :title => dinero.responsable.split("@")[0] ) }
         .media-body
           %h4.media-heading= "$#{dinero.cantidad / 100.0}"
           %blockquote
             %p= dinero.comentario
             %small
-              %cite= dinero.responsable
+              %cite= dinero.responsable.split("@")[0]
