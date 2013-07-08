@@ -12,14 +12,19 @@
   .media
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, :size => 25),
-            :alt => %"#{quien.responsable} tiene $#{quien.subtotal}" }
+            :title => %"#{quien.responsable} tiene $#{quien.subtotal}" }
 
 .row
   .span6
     -@dineros.reverse_each do |dinero|
       .media
         %a{:class => 'pull-left', :href => '#'}
-          %img{ gravatar_attrs(dinero.responsable, :size => 70) }
+          %img{ gravatar_attrs(dinero.responsable,
+                               :size => 70,
+                               :title => dinero.responsable ) }
         .media-body
-          %h4= "$#{dinero.cantidad / 100.0}"
-          %p= dinero.comentario
+          %h4.media-heading= "$#{dinero.cantidad / 100.0}"
+          %blockquote
+            %p= dinero.comentario
+            %small
+              %cite= dinero.responsable
