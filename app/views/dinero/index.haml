@@ -16,6 +16,8 @@
       %img{ gravatar_attrs(quien.responsable, :size => 25),
             :title => %"#{quien.responsable.split("@")[0]} tiene $#{quien.subtotal}" }
 
+= render 'dinero/cargar'
+
 .row
   .span6
     -@dineros.reverse_each do |dinero|
