@@ -7,7 +7,7 @@ Dineros::App.controllers  do
     @total = Dinero.sum("cantidad") / 100.0
 # Obtener un listado de los que tienen plata en este momento
     @quien_los_tiene = Dinero.select("responsable, sum(cantidad) / 100 as subtotal")
-                       .group("responsable").having("subtotal > 0")
+                       .group("responsable")
 
 # Incluir funciones para gravatar
 # TODO: usar avatars.io para encontrar avatares en otros servicios?
