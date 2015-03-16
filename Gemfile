@@ -16,6 +16,8 @@ gem 'money'
 
 group :development do
   gem 'capistrano-passenger'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
 # debug
   gem 'pry'
 end
