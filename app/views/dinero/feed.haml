@@ -1,0 +1,29 @@
+!!! XML utf-8
+<?xml version="1.0" encoding="utf-8"?>
+%feed{xmlns: 'http://www.w3.org/2005/Atom'}
+  %title Dineros
+  %link{href: "http://#{ENV['FQDN']}/", rel: 'self'} Link
+  %updated= Time.now.to_s(:xmlschema)
+  %id= "http://#{ENV['FQDN']}/#{Time.now.to_i}"
+  - @dineros.reverse_each do |dinero|
+    %entry
+      %updated= dinero.created_at.to_s(:xmlschema)
+      %author
+        %name= dinero.responsable.split('@')[0]
+      %id= "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"
+      %link{href: "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"} Link
+      %title= "$#{dinero.cantidad / 100.0}"
+      %content{type: 'html'}
+        = '<![CDATA['.html_safe
+        .media
+          %a{class: 'pull-left', href: '#'}
+            %img{ gravatar_attrs(dinero.responsable,
+                                 size: 70)}
+          .media-body
+            %h4.media-heading= "$#{dinero.cantidad / 100.0}"
+            %blockquote
+              %p= dinero.comentario
+              %small
+                %cite= dinero.responsable.split("@")[0]
+
+        = ']]>'.html_safe
