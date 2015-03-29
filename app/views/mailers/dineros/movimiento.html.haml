@@ -1,3 +1,3 @@
 %p Hola
-%p= "Este es un recibo por los dineros que agregaste en #{ENV['FQDN']} por valor de $#{dinero.cantidad / 100.0}"
+%p= "Este es un recibo por los dineros que agregaste en #{ENV['FQDN']} por #{dinero.dinero.format}"
 %blockquote= dinero.comentario
