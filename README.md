@@ -16,7 +16,7 @@ Configuración
   # el dominio completo
   FQDN=dineros.dominio.org
   # necesitamos gpg1, no gpg2
-  GPG_BIN=/path/a/gpg1
+  GPG_BIN=/usr/bin/gpg1
   # la contraseña de gpg1
   GPG_PASSWORD="una contraseña dificil"
   # opcional si queremos tener la llave de dineros separada de la
