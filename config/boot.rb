@@ -7,8 +7,6 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, PADRINO_ENV)
 
-Money.default_currency = Money::Currency.new("ARS")
-
 Dotenv.load '.env'
 
 # gpg2+ solo funciona con gpg-agent, gpg1 nos permite enviar la

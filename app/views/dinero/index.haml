@@ -7,9 +7,7 @@
       %h1 Tenemos
       %ul.inline
         - @totales.each do |total|
-          %li
-            = total.format
-            = total.currency
+          %li= total.format
   - elsif @total < 0
     %h1 Estamos cagadas!
   - else
@@ -17,7 +15,7 @@
   .media
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, size: 25),
-            title: "#{quien.nombre} tiene #{quien.subtotal.format} #{quien.subtotal.currency}" }
+            title: "#{quien.nombre} tiene #{quien.subtotal.format}" }
 
 = partial 'dinero/cargar'
 = paginate @dineros
@@ -31,9 +29,7 @@
                                size: 70,
                                title: dinero.nombre ) }
         .media-body
-          %h4.media-heading
-            = dinero.dinero.format
-            = dinero.dinero.currency
+          %h4.media-heading= dinero.dinero.format
           %blockquote
             %p= dinero.comentario
             %small

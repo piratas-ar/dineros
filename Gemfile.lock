@@ -72,8 +72,6 @@ GEM
     mini_record (0.4.5)
       activerecord (>= 3.2.0)
     minitest (5.5.1)
-    money (6.5.1)
-      i18n (>= 0.6.4, <= 0.7.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -161,7 +159,6 @@ DEPENDENCIES
   kaminari
   mail-gpg
   mini_record
-  money
   padrino (= 0.11.2)
   pry
   rake

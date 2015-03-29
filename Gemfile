@@ -12,7 +12,6 @@ gem 'sqlite3'
 gem 'padrino', '0.11.2'
 
 gem 'gravatarify'
-gem 'money'
 gem 'mail-gpg'
 gem 'dotenv'
 gem 'kaminari', require: 'kaminari/sinatra'
