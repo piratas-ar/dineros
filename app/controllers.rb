@@ -1,7 +1,7 @@
 Dineros::App.controllers  do
   get :index, :map => '/' do
 # Obtener todo el historial
-    @dineros = Dinero.all.page(params[:page]).per(params[:limit] || 10)
+    @dineros = Dinero.all.order(created_at: :desc).page(params[:page]).per(params[:limit] || 10)
 # Mostrar el total
     @monedas = Dinero.group(:moneda).pluck(:moneda)
     @total = Dinero.sum(:cantidad)

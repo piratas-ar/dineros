@@ -22,7 +22,7 @@
 
 .row
   .span6
-    -@dineros.reverse_each do |dinero|
+    -@dineros.each do |dinero|
       .media
         %a{class: 'pull-left', href: '#'}
           %img{ gravatar_attrs(dinero.responsable,
