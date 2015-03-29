@@ -20,6 +20,7 @@
             title: "#{quien.nombre} tiene #{quien.subtotal.format} #{quien.subtotal.currency}" }
 
 = partial 'dinero/cargar'
+= paginate @dineros
 
 .row
   .span6

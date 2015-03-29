@@ -1,6 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    actionpack (4.2.0)
+      actionview (= 4.2.0)
+      activesupport (= 4.2.0)
+      rack (~> 1.6.0)
+      rack-test (~> 0.6.2)
+      rails-dom-testing (~> 1.0, >= 1.0.5)
+      rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    actionview (4.2.0)
+      activesupport (= 4.2.0)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+      rails-dom-testing (~> 1.0, >= 1.0.5)
+      rails-html-sanitizer (~> 1.0, >= 1.0.1)
     activemodel (4.2.0)
       activesupport (= 4.2.0)
       builder (~> 3.1)
@@ -31,6 +44,7 @@ GEM
     coderay (1.1.0)
     colorize (0.7.5)
     dotenv (2.0.0)
+    erubis (2.7.0)
     gpgme (2.0.8)
       mini_portile (>= 0.5.0)
     gravatarify (3.1.1)
@@ -41,6 +55,11 @@ GEM
       url_mount (~> 0.2.1)
     i18n (0.7.0)
     json (1.8.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    loofah (2.0.1)
+      nokogiri (>= 1.5.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -58,6 +77,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
     padrino (0.11.2)
       padrino-admin (= 0.11.2)
       padrino-cache (= 0.11.2)
@@ -95,6 +116,16 @@ GEM
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rails-deprecated_sanitizer (1.0.3)
+      activesupport (>= 4.2.0.alpha)
+    rails-dom-testing (1.0.5)
+      activesupport (>= 4.2.0.beta, < 5.0)
+      nokogiri (~> 1.6.0)
+      rails-deprecated_sanitizer (>= 1.0.1)
+    rails-html-sanitizer (1.0.2)
+      loofah (~> 2.0)
     rake (10.4.2)
     sinatra (1.4.5)
       rack (~> 1.4)
@@ -127,6 +158,7 @@ DEPENDENCIES
   dotenv
   gravatarify
   haml
+  kaminari
   mail-gpg
   mini_record
   money

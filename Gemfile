@@ -15,6 +15,7 @@ gem 'gravatarify'
 gem 'money'
 gem 'mail-gpg'
 gem 'dotenv'
+gem 'kaminari', require: 'kaminari/sinatra'
 
 group :development do
   gem 'capistrano-passenger'
