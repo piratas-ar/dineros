@@ -1,6 +1,6 @@
 Hola
 
-= word_wrap("Este es un recibo por los dineros que agregaste en #{ENV['FQDN']} por #{dinero.dinero.format}",
-    line_width: 72)
+= "Este es un recibo por los dineros que agregaste en"
+= "#{ENV['FQDN']} por valor de $#{dinero.cantidad / 100.0}"
 
-= word_wrap(dinero.comentario, line_width: 72)
+= "\"#{dinero.comentario}\""

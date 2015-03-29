@@ -4,7 +4,6 @@ module Dineros
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
-    register Padrino::Helpers::FormatHelpers
     register Kaminari::Helpers::SinatraHelpers
 
     enable :sessions
