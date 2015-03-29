@@ -1,17 +1,17 @@
 -# encoding: utf-8
--form_for :dinero, url(:dinero, :crear), :class => 'form-horizontal' do |f|
+-form_for :dinero, url(:dinero, :crear), class: 'form-horizontal' do |f|
   .control-group
     =f.email_field :responsable,
-                  :placeholder => "Tu mail",
-                  :value => params[:responsable]
+                   placeholder: 'Tu mail',
+                   value: params[:responsable]
     %span.help-inline
       Registrar la dirección de correo en
-      %a{:href => "https://gravatar.com"} gravatar.com
+      %a{href: 'https://gravatar.com'} gravatar.com
       para tener la fotito
   .control-group
     =f.text_field :cantidad,
-                  :placeholder => "Dineros!",
-                  :value => params[:cantidad]
+                  placeholder: 'Dineros!',
+                  value: params[:cantidad]
     %span.help-inline También se aceptan negativos :c.
     %br Si nos pasamos dineros entre nosotras, una tiene que anotar negativo y la otra positivo
   .control-group
@@ -20,7 +20,7 @@
                   value: params[:cantidad]
   .control-group
     =f.text_area :comentario,
-                 :placeholder => "Una descripción",
-                 :value => params[:comentario]
+                 placeholder: 'Una descripción',
+                 value: params[:comentario]
   .control-group
-    =f.submit :crear, :class => 'btn btn-primary'
+    =f.submit :crear, class: 'btn btn-primary'
