@@ -6,10 +6,11 @@ Dotenv.load '.env'
 namespace :gpg do
   desc 'Genera una llave gpg'
   task :generate do
+    gpg = ENV['GPG_BIN']
     # Chequea que tengamos gpg1
-    sh "#{ENV['GPG_BIN']} --version"
+    sh "#{gpg} --version"
 
-    Open3::popen3 'gpg1 --gen-key --batch' do |stdin, stdout, stderr|
+    Open3::popen3 "#{gpg} --gen-key --batch" do |stdin, stdout, stderr|
       stdin.puts 'Key-Type: RSA'
       stdin.puts 'Key-Length: 4096'
       stdin.puts "Name-Real: #{ENV['FQDN']}"
@@ -27,5 +28,7 @@ namespace :gpg do
 
       STDERR.print stderr.read
     end
+
+    sh "#{gpg} --armor --export dineros@#{ENV['FQDN']} >public/dineros.asc"
   end
 end
