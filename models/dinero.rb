@@ -6,6 +6,15 @@ class Dinero < ActiveRecord::Base
                       on: :create
 
   property :cantidad, as: :integer
+  property :moneda, as: :string, default: 'ARS'
   property :responsable, index: true
   property :comentario, as: :text
+
+  def nombre
+    responsable.split('@')[0]
+  end
+
+  def dinero
+    Money.new(cantidad, moneda)
+  end
 end

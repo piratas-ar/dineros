@@ -1,16 +1,23 @@
 -# encoding: utf-8
 .hero-unit
-  -if @total > 0
-    %h1= "$#{@total}"
-  -elsif @total < 0
-    %h1= "$#{@total}"
-    %p Estamos cagadas!
-  -else
+  - if @total > 0
+    - if @monedas.count == 1
+      %h1= @totales.first.format
+    - else
+      %h1 Tenemos
+      %ul.inline
+        - @totales.each do |total|
+          %li
+            = total.format
+            = total.currency
+  - elsif @total < 0
+    %h1 Estamos cagadas!
+  - else
     %h1 No hay un choto
   .media
     -@quien_los_tiene.each do |quien|
-      %img{ gravatar_attrs(quien.responsable, :size => 25),
-            :title => %"#{quien.responsable.split("@")[0]} tiene $#{quien.subtotal}" }
+      %img{ gravatar_attrs(quien.responsable, size: 25),
+            title: "#{quien.nombre} tiene #{quien.subtotal.format} #{quien.subtotal.currency}" }
 
 = partial 'dinero/cargar'
 
@@ -18,13 +25,15 @@
   .span6
     -@dineros.reverse_each do |dinero|
       .media
-        %a{:class => 'pull-left', :href => '#'}
+        %a{class: 'pull-left', href: '#'}
           %img{ gravatar_attrs(dinero.responsable,
-                               :size => 70,
-                               :title => dinero.responsable.split("@")[0] ) }
+                               size: 70,
+                               title: dinero.nombre ) }
         .media-body
-          %h4.media-heading= "$#{dinero.cantidad / 100.0}"
+          %h4.media-heading
+            = dinero.dinero.format
+            = dinero.dinero.currency
           %blockquote
             %p= dinero.comentario
             %small
-              %cite= dinero.responsable.split("@")[0]
+              %cite= dinero.nombre

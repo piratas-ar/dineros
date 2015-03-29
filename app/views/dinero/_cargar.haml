@@ -15,6 +15,10 @@
     %span.help-inline También se aceptan negativos :c.
     %br Si nos pasamos dineros entre nosotras, una tiene que anotar negativo y la otra positivo
   .control-group
+    =f.text_field :moneda,
+                  placeholder: 'ARS o cualquiera otra cosa',
+                  value: params[:cantidad]
+  .control-group
     =f.text_area :comentario,
                  :placeholder => "Una descripción",
                  :value => params[:comentario]
