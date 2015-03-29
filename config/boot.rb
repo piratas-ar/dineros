@@ -9,6 +9,14 @@ Bundler.require(:default, PADRINO_ENV)
 
 Money.default_currency = Money::Currency.new("ARS")
 
+Dotenv.load '.env'
+
+# gpg2+ solo funciona con gpg-agent, gpg1 nos permite enviar la
+# contraseña desde ruby. el resto de variables no hace falta, pero la
+# función set_info necesita todas.
+GPGME::Engine.set_info(GPGME::PROTOCOL_OpenPGP,
+  ENV['GPG_BIN'], ENV['GNUPGHOME'])
+
 ##
 # ## Enable devel logging
 #

@@ -13,6 +13,8 @@ gem 'padrino', '0.11.2'
 
 gem 'gravatarify'
 gem 'money'
+gem 'mail-gpg'
+gem 'dotenv'
 
 group :development do
   gem 'capistrano-passenger'

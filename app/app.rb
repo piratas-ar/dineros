@@ -7,6 +7,9 @@ module Dineros
 
     enable :sessions
 
+    set :delivery_method, :sendmail
+    set :mailer_defaults, from: "Dineros <dineros@#{ENV['FQDN']}>"
+
     ##
     # Caching support
     #

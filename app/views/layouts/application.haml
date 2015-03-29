@@ -14,3 +14,10 @@
   %body
     .container
       = yield
+
+    %footer.modal-footer
+      %ol.inline
+        %li
+          %a{href: 'http://repo.hackcoop.com.ar/dineros.git/'} código fuente
+        %li
+          %a{href: '/dineros.asc'}= GPGME::Key.find(:secret).first.fingerprint

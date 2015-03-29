@@ -8,3 +8,6 @@ vendor/gems/*
 db/*.db
 .bundle/*
 vendor/ruby/*
+.env
+gnupg/*
+public/dineros.asc

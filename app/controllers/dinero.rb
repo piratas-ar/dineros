@@ -19,6 +19,7 @@ Dineros::App.controllers :dinero do
     @dinero.cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
 
     if @dinero.save
+      deliver :dineros, :movimiento, @dinero
       redirect '/'
     else
       'Hubo un error'
