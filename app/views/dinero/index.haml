@@ -1,17 +1,19 @@
 -# encoding: utf-8
 .hero-unit
   - if @total > 0
-    - if @monedas.count == 1
-      %h1= @totales.first.format
-    - else
-      %h1 Tenemos
-      %ul.inline
-        - @totales.each do |total|
-          %li= total.format
+    %h1 Ea!
   - elsif @total < 0
     %h1 Estamos cagadas!
   - else
     %h1 No hay un choto
+
+  - if @monedas.count == 1
+    %h2= @totales.first.format
+  - else
+    %h2 Tenemos
+    %ul.inline
+      - @totales.each do |total|
+        %li= total.format
   .media
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, size: 25),
