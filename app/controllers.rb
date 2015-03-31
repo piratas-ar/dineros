@@ -12,7 +12,8 @@ Dineros::App.controllers  do
     end
 # Obtener un listado de los que tienen plata en este momento
     @quien_los_tiene = Dinero.group(:responsable).group(:moneda).
-      select([:responsable, :moneda, 'sum(cantidad) as subtotal'])
+      select([:responsable, :moneda, 'sum(cantidad) as subtotal']).
+      having('subtotal <> 0')
 
 # Convertir los subtotales a monedas
     @quien_los_tiene.collect do |q|
