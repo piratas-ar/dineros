@@ -2,7 +2,7 @@ set :application, 'dineros'
 set :repo_url, 'http://repo.hackcoop.com.ar/dineros.git'
 
 set :linked_dirs, %w{db gnupg}
-set :linked_files, %w{.env}
+set :linked_files, %w{.env public/dineros.asc}
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.1'
