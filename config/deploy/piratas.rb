@@ -1,6 +1,6 @@
 set :deploy_user, 'app'
 set :deploy_to, '/srv/http/dineros.partidopirata.com.ar'
-set :branch, 'master'
+set :branch, 'develop'
 
 set :rails_env, 'production'
 

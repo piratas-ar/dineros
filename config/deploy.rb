@@ -22,4 +22,15 @@ namespace :deploy do
       end
     end
   end
+
+  desc "Migra la base de datos"
+  task :mr_migrate do
+    on primary :db do
+      within release_path do
+        with padrino_env: fetch(:rails_env) do
+          execute :rake, 'mr:migrate'
+        end
+      end
+    end
+  end
 end
