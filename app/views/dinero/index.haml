@@ -25,15 +25,4 @@
 .row
   .span6
     -@dineros.each do |dinero|
-      .media
-        %a{class: 'pull-left', href: '#'}
-          %img{ gravatar_attrs(dinero.responsable,
-                               size: 70,
-                               title: dinero.nombre,
-                               secure: request.secure? ) }
-        .media-body
-          %h4.media-heading= dinero.dinero.format
-          %blockquote
-            %p= dinero.comentario
-            %small
-              %cite= dinero.nombre
+      = partial 'dinero/ficha', locals: { dinero: dinero }

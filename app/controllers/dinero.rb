@@ -2,9 +2,7 @@ require 'time'
 Dineros::App.controllers :dinero do
 
   get :index do
-    @total = Dinero.sum(:cantidad)
-
-    render 'dinero/index'
+    redirect_to '/'
   end
 
   get :cargar do
@@ -26,4 +24,18 @@ Dineros::App.controllers :dinero do
     end
   end
 
+  get :desconfirmar, with: :id do
+    @dinero = Dinero.find_by(codigo: params[:id])
+
+    render 'dinero/desconfirmar'
+  end
+
+  post :desconfirmar do
+    if params[:dinero][:codigo]
+      @dinero = Dinero.find_by(codigo: params[:dinero][:codigo])
+      @dinero.destroy!
+    end
+
+    redirect_to '/'
+  end
 end
