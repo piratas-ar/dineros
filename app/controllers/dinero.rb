@@ -2,7 +2,7 @@ require 'time'
 Dineros::App.controllers :dinero do
 
   get :index do
-    redirect_to '/'
+    redirect '/'
   end
 
   get :cargar do
@@ -17,7 +17,7 @@ Dineros::App.controllers :dinero do
     @dinero.cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
 
     if @dinero.save
-      deliver :dineros, :movimiento, @dinero
+      deliver :dineros, :movimiento, @dinero, url_para_desconfirmar(@dinero)
       redirect '/'
     else
       'Hubo un error'
@@ -36,6 +36,6 @@ Dineros::App.controllers :dinero do
       @dinero.destroy!
     end
 
-    redirect_to '/'
+    redirect '/'
   end
 end

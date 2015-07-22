@@ -1,7 +1,7 @@
 # Helper methods defined here can be accessed in any controller or view in the application
 
 Dineros::App.helpers do
-  # def simple_helper_method
-  #  ...
-  # end
+  def url_para_desconfirmar(dinero)
+    request.base_url + url(:dinero, :desconfirmar, id: dinero.codigo)
+  end
 end
