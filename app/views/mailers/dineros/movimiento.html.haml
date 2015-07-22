@@ -1,3 +1,11 @@
 %p Hola
-%p= "Este es un recibo por los dineros que agregaste en #{ENV['FQDN']} por #{dinero.dinero.format}"
+%p
+  Este es un recibo por los dineros que agregaste en
+  = ENV['FQDN']
+  por
+  = dinero.dinero.format
 %blockquote= dinero.comentario
+%p
+  Si no tenes idea de que se trata esto, use este link de
+  desconfirmacion.  De lo contrario podes ignorar este mensaje.
+  %a{href: url_para_desconfirmar } Desconfirmar

@@ -1,3 +1,4 @@
+require 'securerandom'
 # TODO devolver cantidad como instancias de Money
 class Dinero < ActiveRecord::Base
   timestamps
@@ -9,6 +10,9 @@ class Dinero < ActiveRecord::Base
   property :moneda, as: :string, default: 'ARS'
   property :responsable, index: true
   property :comentario, as: :text
+  property :codigo, as: :string
+
+  before_create :asignar_codigo!
 
   def nombre
     responsable.split('@')[0]
@@ -16,5 +20,11 @@ class Dinero < ActiveRecord::Base
 
   def dinero
     Money.new(cantidad, moneda)
+  end
+
+  private
+
+  def asignar_codigo!
+    self.codigo = SecureRandom.uuid unless codigo
   end
 end
