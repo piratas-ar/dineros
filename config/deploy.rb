@@ -29,7 +29,7 @@ namespace :deploy do
       within release_path do
         with padrino_env: fetch(:rails_env) do
           # https://gist.github.com/rsutphin/9010923
-          resolved_release_path = capture(:pwd, "-P")
+          resolved_release_path = capture(:pwd, '-P')
           set(:release_name, resolved_release_path.split('/').last)
           execute :cp, "db/dineros_#{fetch(:rails_env)}.db db/dineros_pre_#{fetch(:release_name)}.db"
         end

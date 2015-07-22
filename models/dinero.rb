@@ -15,11 +15,15 @@ class Dinero < ActiveRecord::Base
   before_create :asignar_codigo!
 
   def nombre
-    responsable.split('@')[0]
+    responsable.split('@').first
   end
 
   def dinero
     Money.new(cantidad, moneda)
+  end
+
+  def moneda=(tipo)
+    write_attribute(:moneda, tipo.upcase)
   end
 
   private
