@@ -18,11 +18,14 @@
     -@quien_los_tiene.each do |quien|
       %img{ gravatar_attrs(quien.responsable, size: 25, secure: request.secure?),
             title: "#{quien.nombre} tiene #{quien.subtotal.format}" }
+.row
+  .col-md-6
+    = partial 'dinero/cargar'
+  .col-md-6
+    = partial 'layouts/howto'
 
-= partial 'dinero/cargar'
 = paginate @dineros
 
 .row
-  .span6
-    -@dineros.each do |dinero|
-      = partial 'dinero/ficha', locals: { dinero: dinero }
+  -@dineros.each do |dinero|
+    = partial 'dinero/ficha', locals: { dinero: dinero }

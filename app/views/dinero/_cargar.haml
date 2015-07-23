@@ -1,4 +1,5 @@
 -# encoding: utf-8
+%h1 Carga
 -form_for :dinero, url(:dinero, :crear), class: 'form-horizontal' do |f|
   .form-group
     =f.email_field :responsable,
@@ -9,7 +10,7 @@
     %span#dinero_responsable_help.help-block
       Te va a llegar un mail confirmando los dineros.
       %br
-        Registrar la dirección de correo en
+        Registrá la dirección de correo en
         %a{href: 'https://gravatar.com'} gravatar.com
         para tener la fotito.
   .form-group
