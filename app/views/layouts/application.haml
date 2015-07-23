@@ -8,15 +8,13 @@
 
     %link{href: '/stylesheets/bootstrap.css',
           media: 'screen', rel: 'stylesheet', type: 'text/css'}
-    %link{href: '/stylesheets/bootstrap-responsive.css',
-          media: 'screen', rel: 'stylesheet', type: 'text/css'}
 
   %body
     .container
       = yield
 
     %footer.modal-footer
-      %ol.inline
+      %ol.list-inline
         %li
           %a{href: 'http://repo.hackcoop.com.ar/dineros.git/'} código fuente
         %li

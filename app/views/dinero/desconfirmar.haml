@@ -1,16 +1,16 @@
 -# encoding: utf-8
-%h1 ¿Desconfirmar esta transacción?
+%h1 ¿Desconfirmar estos dineros?
 
 %p
-  Al desconfirmar la transacción se borrará del sistema y no afectará
-  el recuento de dineros.
+  Al desconfirmar se borrará del sistema y no afectará el recuento de
+  dineros.
 
 - if @dinero
   = partial 'dinero/ficha', locals: { dinero: @dinero }
 
   - form_for :dinero, url(:dinero, :desconfirmar), class: 'form-horizontal' do |f|
     = f.hidden_field :codigo, value: params[:id]
-    .control-group
+    .form-group
       = f.submit :desconfirmar, class: 'btn btn-warning'
 
 - else
