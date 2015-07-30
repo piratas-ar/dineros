@@ -1,5 +1,5 @@
 Dineros::App.controllers  do
-  get :index, map: '/', provides: [:html,:xml] do
+  get :index, map: '/' do
 # Obtener todo el historial
     @dineros = Dinero.all.order(created_at: :desc).page(params[:page]).per(params[:limit] || 10)
 # Mostrar el total
@@ -24,9 +24,11 @@ Dineros::App.controllers  do
 # TODO: usar avatars.io para encontrar avatares en otros servicios?
     Haml::Helpers.send(:include, Gravatarify::Helper)
 
-    case content_type
-      when :html then render 'dinero/index'
-      when :xml then render 'dinero/feed'
-    end
+    render 'dinero/index'
+  end
+
+  get :feed, provides: :xml do
+    @dineros = Dinero.all.order(created_at: :desc)
+    render 'dinero/feed'
   end
 end
