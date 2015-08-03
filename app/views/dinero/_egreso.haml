@@ -1,0 +1,28 @@
+-# encoding: utf-8
+%h2 Egreso del tesoro
+
+-form_for :dinero, url(:dinero, :desembolsar), class: 'form-horizontal' do |f|
+  .control-group
+    =f.email_field :responsable,
+                   placeholder: 'Pirata que desembolsó dinero',
+                   value: params[:responsable]
+    %span.help-inline
+      Dirección de correo electrónico de la pirata que desembolsó el dinero
+  .control-group
+    =f.text_field :cantidad,
+                  placeholder: 'Dinero!',
+                  value: params[:cantidad]
+    %span.help-inline
+      Cantidad desembolsada (ej: 120.25)
+  .control-group
+    =f.text_field :moneda,
+                  placeholder: 'Doblones u otra moneda',
+                  value: params[:moneda]
+    %span.help-inline
+      (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
+  .control-group
+    =f.text_area :comentario,
+                 placeholder: 'Por que motivo, o para que uso, desembolsó el dinero',
+                 value: params[:comentario]
+  .control-group
+    =f.submit :desemblosar, class: 'btn btn-primary'

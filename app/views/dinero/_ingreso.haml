@@ -1,0 +1,28 @@
+-# encoding: utf-8
+%h2 Ingreso al tesoro
+
+-form_for :dinero, url(:dinero, :ingresar), class: 'form-horizontal' do |f|
+  .control-group
+    =f.email_field :responsable,
+                   placeholder: 'Pirata que recibió dinero',
+                   value: params[:responsable]
+    %span.help-inline
+      Dirección de correo electrónico de la pirata que recibió el dinero
+  .control-group
+    =f.text_field :cantidad,
+                  placeholder: 'Dinero!',
+                  value: params[:cantidad]
+    %span.help-inline
+      Cantidad recibida (ej: 120.25)
+  .control-group
+    =f.text_field :moneda,
+                  placeholder: 'Doblones u otra moneda',
+                  value: params[:moneda]
+    %span.help-inline
+      (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
+  .control-group
+    =f.text_area :comentario,
+                 placeholder: 'Por que motivo, o para que uso, recibió el dinero',
+                 value: params[:comentario]
+  .control-group
+    =f.submit :ingresar, class: 'btn btn-primary'
