@@ -64,29 +64,29 @@ Dineros::App.controllers :dinero do
 
   post :transferir  do
     cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
-    @dinero_entrega = Dinero.new
-# TODO esto podría ir en la validación del modelo...
-    # numero de 2 decimales, se eliminan los decimales sobrantes
-    # no se redondea
-    @dinero_entrega.cantidad = cantidad * -1
-    @dinero_entrega.moneda = (params[:dinero][:moneda]).upcase
-    @dinero_entrega.responsable = (params[:dinero][:responsable_entrega])
-
-    @dinero_recibe = Dinero.new
-# TODO esto podría ir en la validación del modelo...
-    # numero de 2 decimales, se eliminan los decimales sobrantes
-    # no se redondea
-    @dinero_recibe.cantidad = cantidad
-    @dinero_recibe.moneda = (params[:dinero][:moneda]).upcase
-    @dinero_recibe.responsable = (params[:dinero][:responsable_recibe])
-
-    @dinero_entrega.comentario = @dinero_entrega.nombre.concat(' >> ').concat(@dinero_recibe.nombre).concat(': ').concat(params[:dinero][:comentario])
-    @dinero_recibe.comentario = @dinero_entrega.comentario
-
     if cantidad > 0
-      # valida que la persona que transfiere tenga lo que va a transferir
       antes_de_transferir = Dinero.where(responsable: (params[:dinero][:responsable_entrega])).where(moneda: (params[:dinero][:moneda]).upcase).sum(:cantidad)
-      if antes_de_transferir > (params[:dinero][:cantidad].to_f * 100).to_i
+      if antes_de_transferir > cantidad
+        @dinero_entrega = Dinero.new
+    # TODO esto podría ir en la validación del modelo...
+        # numero de 2 decimales, se eliminan los decimales sobrantes
+        # no se redondea
+        @dinero_entrega.cantidad = cantidad * -1
+        @dinero_entrega.moneda = (params[:dinero][:moneda]).upcase
+        @dinero_entrega.responsable = (params[:dinero][:responsable_entrega])
+
+        @dinero_recibe = Dinero.new
+    # TODO esto podría ir en la validación del modelo...
+        # numero de 2 decimales, se eliminan los decimales sobrantes
+        # no se redondea
+        @dinero_recibe.cantidad = cantidad
+        @dinero_recibe.moneda = (params[:dinero][:moneda]).upcase
+        @dinero_recibe.responsable = (params[:dinero][:responsable_recibe])
+
+        @dinero_entrega.comentario = @dinero_entrega.nombre.concat(' >> ').concat(@dinero_recibe.nombre).concat(': ').concat(params[:dinero][:comentario])
+        @dinero_recibe.comentario = @dinero_entrega.comentario
+
+        # valida que la persona que transfiere tenga lo que va a transferir
         if @dinero_entrega.save
           if @dinero_recibe.save
             deliver :dineros, :movimiento, @dinero_entrega
@@ -106,5 +106,4 @@ Dineros::App.controllers :dinero do
       'La cantidad debe ser un número positivo'
     end
   end
-
 end
