@@ -6,8 +6,9 @@
                                         title: dinero.nombre,
                                         secure: request.secure? ) }
   .media-body
-    %h4.media-heading= dinero.dinero.format
-    %blockquote
-      %p= dinero.comentario
-      %footer
-        %cite= dinero.nombre
+    .row
+      %h4.col-md-2.col-md-offset-1.media-heading= dinero.dinero.format
+      %blockquote.col-md-4
+        %p= dinero.comentario
+        %footer
+          %cite= dinero.nombre + ', ' + dinero.created_at.to_s
