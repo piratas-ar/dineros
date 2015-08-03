@@ -2,33 +2,43 @@
 %h2 Transferencia entre piratas
 
 -form_for :dinero, url(:dinero, :transferir), class: 'form-horizontal' do |f|
-  .control-group
+  .form-group
     =f.email_field :responsable_entrega,
                    placeholder: 'Pirata que desembolsó dinero',
+                   class: 'form-control, col-md-3',
                    value: params[:responsable_entrega]
     %span.help-inline
       Dirección de correo electrónico de la pirata que desembolsó el dinero
-  .control-group
+
+  .form-group
     =f.email_field :responsable_recibe,
                    placeholder: 'Pirata que recibió el dinero',
+                   class: 'form-control, col-md-3',
                    value: params[:responsable_recibe]
     %span.help-inline
       Dirección de correo electrónico de la pirata que recibió el dinero
-  .control-group
+
+  .form-group
     =f.text_field :cantidad,
                   placeholder: 'Cuanto dinero cambió de manos',
+                  class: 'form-control, col-md-3',
                   value: params[:cantidad]
     %span.help-inline
       Cantidad transferida (ej: 120.25)
-  .control-group
+
+  .form-group
     =f.text_field :moneda,
                   placeholder: 'Doblones u otra moneda',
+                  class: 'form-control, col-md-3',
                   value: params[:moneda]
     %span.help-inline
       (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
-  .control-group
+
+  .form-group
     =f.text_area :comentario,
                  placeholder: 'Por que motivo se realizó la transferencia',
+                 class: 'form-control, col-md-3',
                  value: params[:comentario]
-  .control-group
+
+  .form-group
     =f.submit :transferir, class: 'btn btn-primary'
