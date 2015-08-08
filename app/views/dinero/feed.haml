@@ -9,16 +9,17 @@
     %entry
       %updated= dinero.created_at.to_s(:xmlschema)
       %author
-        %name= dinero.responsable.split('@')[0]
+        %name= dinero.nombre
       %id= "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"
       %link{href: "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"} Link
-      %title= "$#{dinero.cantidad / 100.0}"
+      %title= dinero.dinero.format
       %content{type: 'html'}
         = '<![CDATA['.html_safe
-        %h4.media-heading= dinero.dinero.format
-        %blockquote
-          %p= dinero.comentario
+        %p= dinero.comentario
+        %p
           %small
-            %cite= dinero.responsable.split("@")[0]
+            = dinero.nombre
+            = '-'
+            = dinero.created_at
 
         = ']]>'.html_safe
