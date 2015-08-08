@@ -5,7 +5,7 @@
   %link{href: "http://#{ENV['FQDN']}/", rel: 'self'} Link
   %updated= Time.now.to_s(:xmlschema)
   %id= "http://#{ENV['FQDN']}/#{Time.now.to_i}"
-  - @dineros.reverse_each do |dinero|
+  - @dineros.each do |dinero|
     %entry
       %updated= dinero.created_at.to_s(:xmlschema)
       %author
