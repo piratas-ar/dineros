@@ -15,7 +15,7 @@
       %title= "$#{dinero.cantidad / 100.0}"
       %content{type: 'html'}
         = '<![CDATA['.html_safe
-        %h4.media-heading= "$#{dinero.cantidad / 100.0}"
+        %h4.media-heading= dinero.dinero.format
         %blockquote
           %p= dinero.comentario
           %small
