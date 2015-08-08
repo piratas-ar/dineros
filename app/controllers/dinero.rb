@@ -11,7 +11,7 @@ Dineros::App.controllers :dinero do
 # TODO esto podría ir en la validación del modelo...
     # numero de 2 decimales, se eliminan los decimales sobrantes
     @dinero.cantidad = cantidad
-    @dinero.moneda = (params[:dinero][:moneda]).upcase
+    @dinero.moneda = params[:dinero][:moneda]
 
     if cantidad > 0
       if @dinero.save
@@ -48,7 +48,7 @@ Dineros::App.controllers :dinero do
     # numero de 2 decimales, se eliminan los decimales sobrantes
     # no se redondea
     @dinero.cantidad = cantidad * -1
-    @dinero.moneda = (params[:dinero][:moneda]).upcase
+    @dinero.moneda = params[:dinero][:moneda]
 
     if cantidad > 0
       if @dinero.save
@@ -72,16 +72,16 @@ Dineros::App.controllers :dinero do
         # numero de 2 decimales, se eliminan los decimales sobrantes
         # no se redondea
         @dinero_entrega.cantidad = cantidad * -1
-        @dinero_entrega.moneda = (params[:dinero][:moneda]).upcase
-        @dinero_entrega.responsable = (params[:dinero][:responsable_entrega])
+        @dinero_entrega.moneda = params[:dinero][:moneda]
+        @dinero_entrega.responsable = params[:dinero][:responsable_entrega]
 
         @dinero_recibe = Dinero.new
     # TODO esto podría ir en la validación del modelo...
         # numero de 2 decimales, se eliminan los decimales sobrantes
         # no se redondea
         @dinero_recibe.cantidad = cantidad
-        @dinero_recibe.moneda = (params[:dinero][:moneda]).upcase
-        @dinero_recibe.responsable = (params[:dinero][:responsable_recibe])
+        @dinero_recibe.moneda = params[:dinero][:moneda]
+        @dinero_recibe.responsable = params[:dinero][:responsable_recibe]
 
         @dinero_entrega.comentario = @dinero_entrega.nombre.concat(' >> ').concat(@dinero_recibe.nombre).concat(': ').concat(params[:dinero][:comentario])
         @dinero_recibe.comentario = @dinero_entrega.comentario
