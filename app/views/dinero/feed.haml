@@ -15,15 +15,10 @@
       %title= "$#{dinero.cantidad / 100.0}"
       %content{type: 'html'}
         = '<![CDATA['.html_safe
-        .media
-          %a{class: 'pull-left', href: '#'}
-            %img{ gravatar_attrs(dinero.responsable,
-                                 size: 70)}
-          .media-body
-            %h4.media-heading= "$#{dinero.cantidad / 100.0}"
-            %blockquote
-              %p= dinero.comentario
-              %small
-                %cite= dinero.responsable.split("@")[0]
+          %h4.media-heading= "$#{dinero.cantidad / 100.0}"
+          %blockquote
+            %p= dinero.comentario
+            %small
+              %cite= dinero.responsable.split("@")[0]
 
         = ']]>'.html_safe
