@@ -15,6 +15,8 @@ Dotenv.load '.env'
 GPGME::Engine.set_info(GPGME::PROTOCOL_OpenPGP,
   ENV['GPG_BIN'], ENV['GNUPGHOME'])
 
+Dotenv.load '.env'
+
 ##
 # ## Enable devel logging
 #

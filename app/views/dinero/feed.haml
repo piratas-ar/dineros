@@ -1,0 +1,25 @@
+!!! XML utf-8
+<?xml version="1.0" encoding="utf-8"?>
+%feed{xmlns: 'http://www.w3.org/2005/Atom'}
+  %title Dineros
+  %link{href: "http://#{ENV['FQDN']}/", rel: 'self'} Link
+  %updated= Time.now.to_s(:xmlschema)
+  %id= "http://#{ENV['FQDN']}/#{Time.now.to_i}"
+  - @dineros.each do |dinero|
+    %entry
+      %updated= dinero.created_at.to_s(:xmlschema)
+      %author
+        %name= dinero.nombre
+      %id= "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"
+      %link{href: "http://#{ENV['FQDN']}/#{dinero.created_at.to_i}"} Link
+      %title= dinero.dinero.format
+      %content{type: 'html'}
+        = '<![CDATA['.html_safe
+        %p= dinero.comentario
+        %p
+          %small
+            = dinero.nombre
+            = '-'
+            = dinero.created_at
+
+        = ']]>'.html_safe
