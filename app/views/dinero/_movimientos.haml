@@ -1,0 +1,7 @@
+-# encoding: utf-8
+= paginate @dineros
+%h2 Movimientos del tesoro
+
+.row
+  -@dineros.each do |dinero|
+    = partial 'dinero/ficha', locals: { dinero: dinero }
