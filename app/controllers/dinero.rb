@@ -65,7 +65,7 @@ Dineros::App.controllers :dinero do
   post :transferir  do
     cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
     if cantidad > 0
-      antes_de_transferir = Dinero.where(responsable: (params[:dinero][:responsable_entrega])).where(moneda: (params[:dinero][:moneda]).upcase).sum(:cantidad)
+      antes_de_transferir = Dinero.where(responsable: params[:dinero][:responsable_entrega]).where(moneda: params[:dinero][:moneda]).sum(:cantidad)
       if antes_de_transferir > cantidad
         @dinero_entrega = Dinero.new
     # TODO esto podría ir en la validación del modelo...

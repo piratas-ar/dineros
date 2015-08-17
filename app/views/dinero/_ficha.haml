@@ -11,4 +11,7 @@
       %blockquote.col-md-4
         %p= dinero.comentario
         %footer
-          %cite= dinero.nombre + ', ' + dinero.created_at.to_s
+          %cite
+            = dinero.nombre
+            = ', '
+            = dinero.created_at

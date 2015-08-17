@@ -14,7 +14,7 @@
         %h2= @totales.first.format
       - else
         %h2 Tenemos
-        %ul.inline
+        %ul.list-inline
           - @totales.each do |total|
             %li= total.format
 
