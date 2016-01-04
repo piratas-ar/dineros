@@ -8,10 +8,10 @@ class Money
   end
 
   def format
-    "#{thousands_separator} #{currency}"
+    "#{Money.thousands_separator(cents)} #{currency}"
   end
 
-  def thousands_separator(sep = '.', dec_sep = ',')
+  def self.thousands_separator(cents, sep = '.', dec_sep = ',')
     int = (cents / 100).to_s.reverse.gsub(/(\d{3})(?=\d)/, "\\1#{sep}").reverse
     dec = (cents / BigDecimal(100)) - (cents / 100)
 

@@ -10,23 +10,20 @@
         %h1 No hay un choto
 
     .col-md-6
-      - if @monedas.count == 1
-        %h2= @totales.first.format
+      - if @balances_resumen.size == 1
+        %h2= @balances_resumen.first.dinero.format
       - else
         %h2 Tenemos
         %ul.list-inline
-          - @totales.each do |total|
-            %li= total.format
-
-  .row
-    .media
-      -@quien_los_tiene.each do |quien|
-        %img{ gravatar_attrs(quien.responsable, size: 25),
-              title: "#{quien.nombre} tiene #{quien.subtotal.format}" }
+          - @balances_resumen.each do |total|
+            - next if total.cantidad == 0
+            %li= total.dinero.format
 
 .tabbable
   %ul.nav.nav-tabs
     %li.active{ role: 'presentation' }
+      = link_to 'Balance', '#balance', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'balance'}
+    %li{ role: 'presentation' }
       = link_to 'Movimientos', '#movimientos', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'movimientos'}
     %li{ role: 'presentation' }
       = link_to 'Ingreso', '#ingreso', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'ingreso'}
@@ -37,7 +34,9 @@
 
 
   .tab-content
-    #movimientos.tab-pane.active{ role: 'tabpanel' }
+    #balance.tab-pane.active{ role: 'tabpanel' }
+      = partial 'dinero/balance'
+    #movimientos.tab-pane{ role: 'tabpanel' }
       = partial 'dinero/movimientos'
     #ingreso.tab-pane{ role: 'tabpanel' }
       = partial 'dinero/ingreso'
