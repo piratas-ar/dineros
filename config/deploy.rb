@@ -1,5 +1,5 @@
 set :application, 'dineros'
-set :repo_url, 'http://repo.hackcoop.com.ar/dineros.git'
+set :repo_url, 'https://github.com/piratas-ar/dineros'
 
 set :linked_dirs, %w{db gnupg}
 set :linked_files, %w{.env public/dineros.asc}

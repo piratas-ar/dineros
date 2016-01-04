@@ -1,6 +1,6 @@
 set :deploy_user, 'app'
 set :deploy_to, '/srv/http/dineros.partidopirata.com.ar'
-set :branch, 'develop'
+set :branch, ENV.fetch('branch', 'develop')
 
 set :rails_env, 'production'
 
@@ -13,4 +13,4 @@ set :bundle_path, '/srv/http/gemas.partidopirata.com.ar'
 set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 
 # IP del VPS
-server 'partidopirata.com.ar', port: 22, user: fetch(:deploy_user), roles: %w{app web db}
+server 'partidopirata.com.ar', port: 1863, user: fetch(:deploy_user), roles: %w{app web db}
