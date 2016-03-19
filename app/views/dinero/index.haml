@@ -31,6 +31,8 @@
       = link_to 'Egreso', '#egreso', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'egreso'}
     %li{ role: 'presentation' }
       = link_to 'Transferencia', '#transferencia', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'transferencia'}
+    %li{ role: 'presentation' }
+      = link_to 'Intercambio', '#intercambio', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'transferencia'}
 
 
   .tab-content
@@ -44,6 +46,8 @@
       = partial 'dinero/egreso'
     #transferencia.tab-pane{ role: 'tabpanel' }
       = partial 'dinero/transferencia'
+    #intercambio.tab-pane{ role: 'tabpanel' }
+      = partial 'dinero/intercambio'
 
 %script{'src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'}
 %script{'src' => 'javascripts/bootstrap.min.js'}

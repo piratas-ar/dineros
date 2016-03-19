@@ -1,0 +1,63 @@
+-# encoding: utf-8
+%h2 Intercambios
+%p En los intercambios, los dineros cambian de manos entre dos piratas
+
+-form_for :dinero, url(:dinero, :intercambiar), class: 'form-horizontal col-md-6' do |f|
+  .form-group
+    =f.email_field :responsable,
+                   placeholder: 'Responsable',
+                   class: 'form-control',
+                   value: params[:responsable]
+    %span.help-inline
+      Dirección de correo electrónico de una de las piratas que
+      participó en el intercambio
+
+  .form-group
+    =f.text_field :cantidad,
+                  placeholder: 'Cuanto dinero cambió de manos',
+                  class: 'form-control',
+                  value: params[:cantidad]
+    %span.help-inline
+      Cantidad transferida (ej: 120.25)
+
+  .form-group
+    =f.text_field :moneda,
+                  placeholder: 'Doblones u otra moneda',
+                  class: 'form-control',
+                  value: params[:moneda]
+    %span.help-inline
+      (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
+
+  .form-group
+    =f.email_field :responsable_opcional,
+                   placeholder: 'Responsable opcional',
+                   class: 'form-control',
+                   value: params[:responsable_opcional]
+    %span.help-inline
+      Dirección de correo electrónico de la otra pirata.  Si no era
+      pirata, no completar, el sistema asume que se hizo una venta.
+
+  .form-group
+    =f.text_field :cantidad_recibida,
+                  placeholder: 'Cuanto dinero cambió de manos',
+                  class: 'form-control',
+                  value: params[:cantidad_recibida]
+    %span.help-inline
+      Cantidad recibida (ej: 120.25)
+
+  .form-group
+    =f.text_field :moneda_recibida,
+                  placeholder: 'Doblones u otra moneda',
+                  class: 'form-control',
+                  value: params[:moneda_recibida]
+    %span.help-inline
+      (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
+
+  .form-group
+    =f.text_area :comentario,
+                 placeholder: 'Por que motivo se realizó el intercambio',
+                 class: 'form-control',
+                 value: params[:comentario]
+
+  .form-group
+    =f.submit :transferir, class: 'btn btn-primary'
