@@ -1,18 +1,18 @@
 set :application, 'dineros'
 set :repo_url, 'https://github.com/piratas-ar/dineros'
 
-set :linked_dirs, %w{db gnupg}
-set :linked_files, %w{.env public/dineros.asc}
+set :linked_dirs, %w(db gnupg)
+set :linked_files, %w(.env public/dineros.asc)
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.1'
 
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_map_bins, %w(rake gem bundle ruby rails)
 set :rbenv_roles, :all # default value
 
 namespace :deploy do
-  desc "Genera la llave gpg remota"
+  desc 'Genera la llave gpg remota'
   task :gpg_generate do
     on primary :app do
       within release_path do
@@ -31,13 +31,14 @@ namespace :deploy do
           # https://gist.github.com/rsutphin/9010923
           resolved_release_path = capture(:pwd, '-P')
           set(:release_name, resolved_release_path.split('/').last)
-          execute :cp, "db/dineros_#{fetch(:rails_env)}.db db/dineros_pre_#{fetch(:release_name)}.db"
+          execute :cp,
+                  "db/dineros_#{fetch(:rails_env)}.db db/dineros_pre_#{fetch(:release_name)}.db"
         end
       end
     end
   end
 
-  desc "Migra la base de datos"
+  desc 'Migra la base de datos'
   task :mr_migrate do
     on primary :db do
       within release_path do

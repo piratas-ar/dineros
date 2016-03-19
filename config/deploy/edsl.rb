@@ -10,7 +10,10 @@ set :tmp_dir, "#{fetch :deploy_to}/tmp"
 # Las gemas se comparten con otras apps
 set :bundle_path, '/srv/http/gemas'
 # Evitar compilar nokogiri
-set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
+set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 # IP del VPS
-server 'lainventoria.com.ar', port: 22, user: fetch(:deploy_user), roles: %w{app web db}
+server 'lainventoria.com.ar',
+       port: 22,
+       user: fetch(:deploy_user),
+       roles: %w(app web db)

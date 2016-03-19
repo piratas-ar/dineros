@@ -20,6 +20,6 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
-# debug
+  # debug
   gem 'pry'
 end

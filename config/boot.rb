@@ -1,5 +1,5 @@
 # Defines our constants
-PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development'  unless defined?(PADRINO_ENV)
+PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'development' unless defined?(PADRINO_ENV)
 PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
 # Load our dependencies
@@ -13,7 +13,8 @@ Dotenv.load '.env'
 # contraseña desde ruby. el resto de variables no hace falta, pero la
 # función set_info necesita todas.
 GPGME::Engine.set_info(GPGME::PROTOCOL_OpenPGP,
-  ENV['GPG_BIN'], ENV['GNUPGHOME'])
+                       ENV['GPG_BIN'],
+                       ENV['GNUPGHOME'])
 
 Dotenv.load '.env'
 

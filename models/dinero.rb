@@ -1,5 +1,6 @@
 require 'securerandom'
-# TODO devolver cantidad como instancias de Money
+# TODO: devolver cantidad como instancias de Money
+# El Dinero es una cantidad de algo en posesión de una responsable
 class Dinero < ActiveRecord::Base
   timestamps
   validates_format_of :responsable,

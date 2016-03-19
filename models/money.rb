@@ -16,7 +16,7 @@ class Money
     dec = (cents / BigDecimal(100)) - (cents / 100)
 
     if dec == 0.0
-      "#{int}"
+      int.to_s
     else
       "#{int}#{dec_sep}#{(dec * 100).to_i}"
     end
