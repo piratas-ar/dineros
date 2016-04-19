@@ -1,17 +1,10 @@
-.media
-  .media-left
-    %a{href: '#'}
-      %img.media-object{ gravatar_attrs(dinero.responsable,
-                                        size: 70,
-                                        title: dinero.nombre,
-                                        secure: request.secure? ) }
-  .media-body
-    .row
-      %h4.col-md-2.col-md-offset-1.media-heading= dinero.dinero.format
-      %blockquote.col-md-4
-        %p= dinero.comentario
-        %footer
-          %cite
-            = dinero.nombre
-            = ', '
-            = dinero.created_at
+.list-group-item
+  .row
+    .col-sm-3
+      %img.pull-left{ gravatar_attrs(dinero.responsable,
+        size: 70, title: dinero.nombre, secure: request.secure? ) }
+      %h4= dinero.dinero.format
+      %p= dinero.nombre
+    .col-sm-9
+      %p= dinero.comentario
+      %p= dinero.created_at

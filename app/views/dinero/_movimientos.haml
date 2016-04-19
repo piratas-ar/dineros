@@ -2,6 +2,7 @@
 = paginate @dineros
 %h2 Movimientos del tesoro
 
-.row
-  -@dineros.each do |dinero|
-    = partial 'dinero/ficha', locals: { dinero: dinero }
+.panel.panel-default
+  .list-group
+    -@dineros.each do |dinero|
+      = partial 'dinero/ficha', locals: { dinero: dinero }
