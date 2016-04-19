@@ -45,5 +45,13 @@
     #transferencia.tab-pane{ role: 'tabpanel' }
       = partial 'dinero/transferencia'
 
-%script{'src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'}
-%script{'src' => 'javascripts/bootstrap.min.js'}
+%script{src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'}
+%script{src: '/javascripts/bootstrap.min.js'}
+%script{src: 'https://code.jquery.com/ui/1.11.4/jquery-ui.js'}
+:javascript
+  $(function() {
+    var responsables = [ '#{Dinero.pluck(:responsable).uniq.join('\',\'')}' ];
+    $('.responsables').autocomplete({ source: responsables });
+    var monedas = [ '#{Dinero.pluck(:moneda).uniq.join('\',\'')}' ];
+    $('.monedas').autocomplete({ source: monedas });
+  });

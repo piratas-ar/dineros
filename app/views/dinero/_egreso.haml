@@ -5,7 +5,7 @@
   .form-group
     =f.email_field :responsable,
                    placeholder: 'Pirata que desembolsó dinero',
-                   class: 'form-control',
+                   class: 'form-control responsables',
                    value: params[:responsable]
     %span.help-inline
       Dirección de correo electrónico de la pirata que desembolsó el dinero
@@ -21,7 +21,7 @@
   .form-group
     =f.text_field :moneda,
                   placeholder: 'Doblones u otra moneda',
-                  class: 'form-control',
+                  class: 'form-control monedas',
                   value: params[:moneda]
     %span.help-inline
       (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
