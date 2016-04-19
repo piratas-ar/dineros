@@ -15,6 +15,7 @@ gem 'gravatarify'
 gem 'mail-gpg'
 gem 'dotenv'
 gem 'kaminari', require: 'kaminari/sinatra'
+gem 'pivot_table'
 
 group :development do
   gem 'capistrano-passenger'

@@ -1,0 +1,21 @@
+%table.table.table-condensed.table-striped
+  %thead
+    %tr
+      %th Grupo
+      - skip_columns = []
+      - @balance_grupal.columns.each do |b|
+        %th= b.header
+
+  %tfoot
+    %tr
+      %th{colspan: 1 + @balance_grupal.column_headers.count }
+
+  %tbody
+    - @balance_grupal.rows.each do |b|
+      %tr
+        %td= b.header
+        - b.data.each do |c|
+          - if c
+            %td= Money.thousands_separator c.cantidad
+          - else
+            %td -

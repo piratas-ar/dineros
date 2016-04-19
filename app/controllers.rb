@@ -12,7 +12,7 @@ Dineros::App.controllers  do
     # | ARS    | fauno       | 3000    | 300    | 2700    |
     # | BTC    | fauno       |    1    |   0    |    1    |
     @balances = Dinero.group(:moneda).group(:responsable).
-      select([ :responsable, :moneda,
+      select([ :grupo, :responsable, :moneda,
       'sum(case when cantidad > 0 then cantidad else 0 end) as ingreso',
       'sum(case when cantidad < 0 then cantidad else 0 end) as egreso',
       'sum(cantidad) as cantidad' ])
@@ -22,6 +22,16 @@ Dineros::App.controllers  do
       'sum(case when cantidad > 0 then cantidad else 0 end) as ingreso',
       'sum(case when cantidad < 0 then cantidad else 0 end) as egreso',
       'sum(cantidad) as cantidad' ])
+
+    @balance_grupal = PivotTable::Grid.new do |g|
+      g.source_data = Dinero.group(:grupo).group(:moneda)
+        .select([ :grupo, :moneda, 'sum(cantidad) as cantidad' ])
+
+      g.column_name = :moneda
+      g.row_name    = :grupo
+      g.value_name  = :cantidad
+    end
+    @balance_grupal.build
 
 # Incluir funciones para gravatar
 # TODO: usar avatars.io para encontrar avatares en otros servicios?
