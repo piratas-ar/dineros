@@ -4,7 +4,10 @@
       %img.pull-left{ gravatar_attrs(dinero.responsable,
         size: 70, title: dinero.nombre, secure: request.secure? ) }
       %h4= dinero.dinero.format
-      %p= dinero.nombre
+      %p
+        = dinero.grupo
+        /
+        = dinero.nombre
     .col-sm-9
       %p= dinero.comentario
       %p= dinero.created_at.strftime('%F')

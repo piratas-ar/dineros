@@ -11,6 +11,7 @@ class Dinero < ActiveRecord::Base
   property :responsable, index: true
   property :comentario, as: :text
   property :codigo, as: :string
+  property :grupo, as: :string, default: 'global'
 
   before_create :asignar_codigo!
 
