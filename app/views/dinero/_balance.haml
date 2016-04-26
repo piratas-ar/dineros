@@ -18,7 +18,7 @@
       %tr
         %td= fila.moneda
         %td
-          %img{ gravatar_attrs(fila.responsable, size: 25) }
+          %img{ gravatar_attrs(fila.responsable, size: 25, secure: true) }
           = fila.nombre
         %td= Money.thousands_separator fila.ingreso
         %td= Money.thousands_separator fila.egreso

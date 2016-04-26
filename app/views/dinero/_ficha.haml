@@ -2,7 +2,7 @@
   .row
     .col-sm-4
       %img.pull-left{ gravatar_attrs(dinero.responsable,
-        size: 70, title: dinero.nombre, secure: request.secure? ) }
+        size: 70, title: dinero.nombre, secure: true ) }
       %h4= dinero.dinero.format
       %p
         = dinero.grupo
