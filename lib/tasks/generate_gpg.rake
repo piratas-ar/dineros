@@ -10,7 +10,7 @@ namespace :gpg do
     # Chequea que tengamos gpg1
     sh "#{gpg} --version"
 
-    Open3::popen3 "#{gpg} --gen-key --batch" do |stdin, stdout, stderr|
+    Open3.popen3 "#{gpg} --gen-key --batch" do |stdin, _, stderr|
       stdin.puts 'Key-Type: RSA'
       stdin.puts 'Key-Length: 4096'
       stdin.puts "Name-Real: #{ENV['FQDN']}"

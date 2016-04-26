@@ -1,3 +1,4 @@
+# Una aplicación para llevar registros
 module Dineros
   class App < Padrino::Application
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
