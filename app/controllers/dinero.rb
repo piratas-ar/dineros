@@ -62,46 +62,36 @@ Dineros::App.controllers :dinero do
   end
 
   post :transferir do
-    cantidad = (params[:dinero][:cantidad].to_f * 100).to_i
-    if cantidad > 0
-      @dinero_entrega = Dinero.new
-      # TODO: esto podría ir en la validación del modelo...
-      # numero de 2 decimales, se eliminan los decimales sobrantes
-      # no se redondea
-      @dinero_entrega.cantidad = cantidad * -1
-      @dinero_entrega.moneda = params[:dinero][:moneda]
-      @dinero_entrega.responsable = params[:dinero][:responsable_entrega]
+    params[:dinero][:cantidad] = (params[:dinero][:cantidad].to_f * 100).to_i
+    halt 'La cantidad debe ser un número positivo' unless params[:dinero][:cantidad] > 0
 
-      @dinero_recibe = Dinero.new
-      # TODO: esto podría ir en la validación del modelo...
-      # numero de 2 decimales, se eliminan los decimales sobrantes
-      # no se redondea
-      @dinero_recibe.cantidad = cantidad
-      @dinero_recibe.moneda = params[:dinero][:moneda]
-      @dinero_recibe.responsable = params[:dinero][:responsable_recibe]
+    recibe  = params[:dinero]
+    entrega = recibe.dup
+    entrega[:responsable] = entrega.delete("responsable_entrega")
+    recibe[:responsable]  = recibe.delete("responsable_recibe")
+    entrega[:cantidad]    = entrega[:cantidad] * -1
 
-      @dinero_entrega.comentario = @dinero_entrega.nombre
-                                                  .concat(' >> ')
-                                                  .concat(@dinero_recibe.nombre)
-                                                  .concat(': ')
-                                                  .concat(params[:dinero][:comentario])
-      @dinero_recibe.comentario = @dinero_entrega.comentario
+    recibe.delete("responsable_entrega")
+    entrega.delete("responsable_recibe")
 
-      # valida que la persona que transfiere tenga lo que va a transferir
-      if @dinero_entrega.save
-        if @dinero_recibe.save
-          deliver :dineros, :movimiento, @dinero_entrega
-          deliver :dineros, :movimiento, @dinero_recibe
-          redirect '/'
-        else
-          @dinero_entrega.delete
-          'Hubo un error'
-        end
-      else
-        'Hubo un error'
+    dineros = [ Dinero.new(entrega), Dinero.new(recibe) ]
+
+    dineros.first.comentario = "#{dineros.first.nombre} >> #{dineros.last.nombre}: #{dineros.first.comentario}"
+    dineros.last.comentario  = dineros.first.comentario
+
+    saved = []
+    Dinero.transaction do
+      saved = dineros.map(&:save)
+    end
+
+    if saved.all?
+      dineros.each do |dinero|
+        deliver :dineros, :movimiento, dinero
       end
+
+      redirect '/'
     else
-      'La cantidad debe ser un número positivo'
+      'No se pudieron guardar las transferencias'
     end
   end
 
