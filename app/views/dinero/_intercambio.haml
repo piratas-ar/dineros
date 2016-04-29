@@ -6,7 +6,7 @@
   .form-group
     =f.email_field :responsable,
                    placeholder: 'Responsable',
-                   class: 'form-control',
+                   class: 'form-control responsables',
                    value: params[:responsable]
     %span.help-inline
       Dirección de correo electrónico de una de las piratas que
@@ -23,7 +23,7 @@
   .form-group
     =f.text_field :moneda,
                   placeholder: 'Doblones u otra moneda',
-                  class: 'form-control',
+                  class: 'form-control monedas',
                   value: params[:moneda]
     %span.help-inline
       (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
@@ -31,7 +31,7 @@
   .form-group
     =f.email_field :responsable_opcional,
                    placeholder: 'Responsable opcional',
-                   class: 'form-control',
+                   class: 'form-control responsables',
                    value: params[:responsable_opcional]
     %span.help-inline
       Dirección de correo electrónico de la otra pirata.  Si no era
@@ -48,7 +48,7 @@
   .form-group
     =f.text_field :moneda_recibida,
                   placeholder: 'Doblones u otra moneda',
-                  class: 'form-control',
+                  class: 'form-control monedas',
                   value: params[:moneda_recibida]
     %span.help-inline
       (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
@@ -56,7 +56,7 @@
   .form-group
     =f.text_field :grupo,
                   placeholder: 'Proyecto',
-                  class: 'form-control',
+                  class: 'form-control grupos',
                   value: params[:grupo]
     %span.help-inline
       Proyecto

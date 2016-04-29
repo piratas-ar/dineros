@@ -58,4 +58,6 @@
     $('.responsables').autocomplete({ source: responsables });
     var monedas = [ '#{Dinero.pluck(:moneda).uniq.join('\',\'')}' ];
     $('.monedas').autocomplete({ source: monedas });
+    var grupos = [ '#{Dinero.pluck(:grupo).uniq.join('\',\'')}' ];
+    $('.grupos').autocomplete({ source: grupos });
   });
