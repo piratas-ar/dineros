@@ -54,6 +54,14 @@
       (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
 
   .form-group
+    =f.text_field :grupo,
+                  placeholder: 'Proyecto',
+                  class: 'form-control',
+                  value: params[:grupo]
+    %span.help-inline
+      Proyecto
+
+  .form-group
     =f.text_area :comentario,
                  placeholder: 'Por que motivo se realizó el intercambio',
                  class: 'form-control',
