@@ -26,15 +26,15 @@ Dineros::App.controllers :dinero do
   end
 
   get :desconfirmar, with: :id do
-    @dinero = Dinero.find_by(codigo: params[:id])
+    @dineros = Dinero.where(codigo: params[:id])
 
     render 'dinero/desconfirmar'
   end
 
+  # Destruye todos los dineros con el mismo código
   post :desconfirmar do
     if params[:dinero][:codigo]
-      @dinero = Dinero.find_by(codigo: params[:dinero][:codigo])
-      @dinero.destroy!
+      Dinero.where(codigo: params[:dinero][:codigo]).destroy_all
     end
 
     redirect '/'
@@ -51,7 +51,7 @@ Dineros::App.controllers :dinero do
 
     if cantidad > 0
       if @dinero.save
-        deliver :dineros, :movimiento, @dinero
+        deliver :dineros, :movimiento, @dinero, url_para_desconfirmar(@dinero)
         redirect '/'
       else
         'Hubo un error'
@@ -61,6 +61,8 @@ Dineros::App.controllers :dinero do
     end
   end
 
+  # La transferencia genera dos movimientos, uno negativo y otro
+  # positivo, lo único que cambia en el tesoro es el cambio de manos.
   post :transferir do
     params[:dinero]['cantidad'] = (params[:dinero][:cantidad].to_f * 100).to_i
     halt 'La cantidad debe ser un número positivo' unless params[:dinero][:cantidad] > 0
@@ -79,6 +81,9 @@ Dineros::App.controllers :dinero do
     dineros.first.comentario = "#{dineros.first.nombre} >> #{dineros.last.nombre}: #{dineros.first.comentario}"
     dineros.last.comentario  = dineros.first.comentario
 
+    # Los dos movimientos comparten el mismo codigo
+    dineros.last.codigo = dineros.first.asignar_y_devolver_codigo!
+
     saved = []
     Dinero.transaction do
       saved = dineros.map(&:save)
@@ -87,7 +92,7 @@ Dineros::App.controllers :dinero do
 
     if saved.all?
       dineros.each do |dinero|
-        deliver :dineros, :movimiento, dinero
+        deliver :dineros, :movimiento, dinero, url_para_desconfirmar(dinero)
       end
 
       redirect '/'
@@ -145,6 +150,11 @@ Dineros::App.controllers :dinero do
       dineros << Dinero.new(recibido_inverso)
     end
 
+    codigo = dineros.first.asignar_y_devolver_codigo!
+    dineros.map do |d|
+      d.codigo = codigo
+    end
+
     saved = []
     Dinero.transaction do
       saved = dineros.map(&:save)
@@ -154,7 +164,7 @@ Dineros::App.controllers :dinero do
 
     if saved.all?
       dineros.each do |dinero|
-        deliver :dineros, :movimiento, dinero
+        deliver :dineros, :movimiento, dinero, url_para_desconfirmar(dinero)
       end
 
       redirect '/'

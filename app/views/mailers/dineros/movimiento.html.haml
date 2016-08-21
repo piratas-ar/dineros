@@ -5,7 +5,18 @@
   por
   = dinero.dinero.format
 %blockquote= dinero.comentario
+
+- if dinero.asociados
+  %p Estos dineros tienen estos otros asociados:
+  %ul
+  - dinero.asociados.each do |a|
+    %li
+      = a.dinero.format
+      = "(#{a.nombre})"
+
 %p
-  Si no tenes idea de que se trata esto, use este link de
+  Si no tenes idea de que se trata esto, usa este link de
   desconfirmacion.  De lo contrario podes ignorar este mensaje.
   %a{href: url_para_desconfirmar } Desconfirmar
+
+  (La desconfirmacion elimina los dineros asociados tambien.)

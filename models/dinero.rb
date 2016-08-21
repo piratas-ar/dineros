@@ -14,7 +14,7 @@ class Dinero < ActiveRecord::Base
   property :codigo, as: :string
   property :grupo, as: :string, default: 'global'
 
-  before_create :asignar_codigo!
+  before_create :asignar_y_devolver_codigo!
 
   def nombre
     responsable.split('@').first
@@ -28,9 +28,11 @@ class Dinero < ActiveRecord::Base
     write_attribute(:moneda, tipo.upcase)
   end
 
-  private
-
-  def asignar_codigo!
+  def asignar_y_devolver_codigo!
     self.codigo = SecureRandom.uuid unless codigo
+  end
+
+  def asociados
+    @asociados ||= Dinero.where(codigo: codigo).where.not(id: id)
   end
 end

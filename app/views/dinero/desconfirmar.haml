@@ -2,11 +2,12 @@
 %h1 ¿Desconfirmar estos dineros?
 
 %p
-  Al desconfirmar se borrará del sistema y no afectará el recuento de
+  Al desconfirmar se borrarán del sistema y no afectarán el recuento de
   dineros.
 
-- if @dinero
-  = partial 'dinero/ficha', locals: { dinero: @dinero }
+- unless @dineros.empty?
+  - @dineros.each do |dinero|
+    = partial 'dinero/ficha', locals: { dinero: dinero }
 
   - form_for :dinero, url(:dinero, :desconfirmar), class: 'form-horizontal' do |f|
     = f.hidden_field :codigo, value: params[:id]

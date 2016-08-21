@@ -5,7 +5,14 @@ Hola
 
 = dinero.comentario
 
-Si no tenes idea de que se trata esto, use este link de
+- if dinero.asociados
+  Estos dineros tienen estos otros asociados:
+  - dinero.asociados.each do |a|
+    = "* #{a.dinero.format} (#{a.nombre})"
+
+Si no tenes idea de que se trata esto, usa este link de
 desconfirmacion.  De lo contrario podes ignorar este mensaje.
 
 = url_para_desconfirmar
+
+(La desconfirmacion elimina los dineros asociados tambien.)

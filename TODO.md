@@ -16,10 +16,10 @@
 
 * Vista individual de movimiento (link directo)
 
-* Agrupar movimientos
-
-  Los movimientos de una misma operación llevan un ID para agruparlos
-
 # Cosas en progreso
 
 # Cosas hechas
+
+* Agrupar movimientos
+
+  Los movimientos de una misma operación llevan un ID para agruparlos
