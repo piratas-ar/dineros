@@ -2,21 +2,22 @@
 %p
   Este es un recibo por los dineros que agregaste en
   = ENV['FQDN']
-  por
-  = dinero.dinero.format
-%blockquote= dinero.comentario
 
-- if dinero.asociados
-  %p Estos dineros tienen estos otros asociados:
-  %ul
-  - dinero.asociados.each do |a|
-    %li
-      = a.dinero.format
-      = "(#{a.nombre})"
+%blockquote= dineros.first.comentario
+
+%p Estos fueron los movimientos realizados
+
+%table
+  %tbody
+    - dineros.each do |dinero|
+      %tr
+        %td= dinero.dinero.format
+        %td= dinero.nombre
 
 %p
   Si no tenes idea de que se trata esto, usa este link de
-  desconfirmacion.  De lo contrario podes ignorar este mensaje.
-  %a{href: url_para_desconfirmar } Desconfirmar
+  desconfirmacion para eliminarlos.  De lo contrario podes ignorar este
+  mensaje.
 
-  (La desconfirmacion elimina los dineros asociados tambien.)
+%p
+  %a{href: url_para_desconfirmar } Desconfirmar

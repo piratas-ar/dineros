@@ -14,7 +14,7 @@ Dineros::App.controllers :dinero do
 
     if cantidad > 0
       if @dinero.save
-        deliver :dineros, :movimiento, @dinero, url_para_desconfirmar(@dinero)
+        deliver :dineros, :movimiento, [@dinero], url_para_desconfirmar(@dinero)
 
         redirect '/'
       else
@@ -51,7 +51,7 @@ Dineros::App.controllers :dinero do
 
     if cantidad > 0
       if @dinero.save
-        deliver :dineros, :movimiento, @dinero, url_para_desconfirmar(@dinero)
+        deliver :dineros, :movimiento, [@dinero], url_para_desconfirmar(@dinero)
         redirect '/'
       else
         'Hubo un error'
@@ -91,9 +91,7 @@ Dineros::App.controllers :dinero do
     end
 
     if saved.all?
-      dineros.each do |dinero|
-        deliver :dineros, :movimiento, dinero, url_para_desconfirmar(dinero)
-      end
+      deliver :dineros, :movimiento, dineros, url_para_desconfirmar(dineros.first)
 
       redirect '/'
     else
@@ -163,9 +161,7 @@ Dineros::App.controllers :dinero do
     end
 
     if saved.all?
-      dineros.each do |dinero|
-        deliver :dineros, :movimiento, dinero, url_para_desconfirmar(dinero)
-      end
+      deliver :dineros, :movimiento, dineros, url_para_desconfirmar(dineros.first)
 
       redirect '/'
     else

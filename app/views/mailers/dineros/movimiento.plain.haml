@@ -1,18 +1,16 @@
 Hola
 
-= "Este es un recibo por los dineros que agregaste en"
-= "#{ENV['FQDN']} por #{dinero.dinero.format}"
+Este es un recibo por los dineros que agregaste en
+= ENV['FQDN']
 
-= dinero.comentario
+= dineros.first.comentario
 
-- if dinero.asociados
-  Estos dineros tienen estos otros asociados:
-  - dinero.asociados.each do |a|
-    = "* #{a.dinero.format} (#{a.nombre})"
+Estos fueron los movimientos realizados:
 
-Si no tenes idea de que se trata esto, usa este link de
-desconfirmacion.  De lo contrario podes ignorar este mensaje.
+- dineros.each do |dinero|
+  = "#{dinero.dinero.format}\t#{dinero.nombre}"
+
+Si no tenes idea de que se trata esto, usa este link de desconfirmacion
+para eliminarlos.  De lo contrario podes ignorar este mensaje.
 
 = url_para_desconfirmar
-
-(La desconfirmacion elimina los dineros asociados tambien.)
