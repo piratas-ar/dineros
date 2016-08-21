@@ -10,7 +10,8 @@ Dineros::App.controllers :dinero do
     # TODO: esto podría ir en la validación del modelo...
     # numero de 2 decimales, se eliminan los decimales sobrantes
     @dinero.cantidad = cantidad
-    @dinero.moneda = params[:dinero][:moneda]
+    @dinero.moneda   = params[:dinero][:moneda]
+    @dinero.tipo     = 'ingreso'
 
     if cantidad > 0
       if @dinero.save
@@ -47,7 +48,8 @@ Dineros::App.controllers :dinero do
     # numero de 2 decimales, se eliminan los decimales sobrantes
     # no se redondea
     @dinero.cantidad = cantidad * -1
-    @dinero.moneda = params[:dinero][:moneda]
+    @dinero.moneda   = params[:dinero][:moneda]
+    @dinero.tipo     = 'egreso'
 
     if cantidad > 0
       if @dinero.save
@@ -68,6 +70,7 @@ Dineros::App.controllers :dinero do
     halt 'La cantidad debe ser un número positivo' unless params[:dinero][:cantidad] > 0
 
     recibe  = params[:dinero]
+    recibe['tipo'] = 'transferencia'
     entrega = recibe.dup
     entrega['responsable'] = entrega.delete('responsable_entrega')
     recibe['responsable']  = recibe.delete('responsable_recibe')
@@ -115,6 +118,7 @@ Dineros::App.controllers :dinero do
     params[:dinero]['cantidad_recibida'] = (params[:dinero][:cantidad_recibida].to_f * 100).to_i
 
     recibido             = params[:dinero]
+    recibido['tipo']     = 'intercambio'
     responsable_opcional = recibido.delete('responsable_opcional')
     intercambio_interno  = !responsable_opcional.empty? && (recibido[:responsable] != responsable_opcional)
     entregado            = recibido.dup

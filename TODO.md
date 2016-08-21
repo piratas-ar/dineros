@@ -1,8 +1,6 @@
 # Cosas para hacer
 
-* Agregar tipo de operación
-
-  Cada operación agrega su propio tipo para saber cual fue la razón
+* Explicar que significa cada operación
 
 * Filtrar los movimientos por proyecto, persona y doblones
 
@@ -16,6 +14,14 @@
 
 * Vista individual de movimiento (link directo)
 
+  También mostrar movimientos asociados!
+
+* La desconfirmación no elimina sino que marca para ignorar
+
+  Así queda un historial
+
+* Simplificar los controladores!
+
 # Cosas en progreso
 
 # Cosas hechas
@@ -23,3 +29,7 @@
 * Agrupar movimientos
 
   Los movimientos de una misma operación llevan un ID para agruparlos
+
+* Agregar tipo de operación
+
+  Cada operación agrega su propio tipo para saber cual fue la razón

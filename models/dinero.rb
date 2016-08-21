@@ -1,5 +1,4 @@
 require 'securerandom'
-# TODO: devolver cantidad como instancias de Money
 # El Dinero es una cantidad de algo en posesión de una responsable
 class Dinero < ActiveRecord::Base
   timestamps
@@ -13,6 +12,7 @@ class Dinero < ActiveRecord::Base
   property :comentario, as: :text
   property :codigo, as: :string
   property :grupo, as: :string, default: 'global'
+  property :tipo, as: :string
 
   before_create :asignar_y_devolver_codigo!
 
