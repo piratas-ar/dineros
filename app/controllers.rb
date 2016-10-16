@@ -41,15 +41,25 @@ Dineros::App.controllers do
     @balances_resumen = @dineros.group(:moneda).select(fields)
     @balance_grupal = PivotTable::Grid.new do |g|
       g.source_data = @dineros.group(:grupo)
-                            .group(:moneda)
-                            .select([:grupo, :moneda,
-                                     'sum(cantidad) as cantidad'])
+        .group(:moneda)
+        .select([:grupo, :moneda, 'sum(cantidad) as cantidad'])
 
       g.column_name = :moneda
       g.row_name    = :grupo
       g.value_name  = :cantidad
     end
     @balance_grupal.build
+
+    @balance_responsables = PivotTable::Grid.new do |g|
+      g.source_data = @dineros.group(:responsable)
+        .group(:moneda)
+        .select([:responsable, :moneda, 'sum(cantidad) as cantidad'])
+
+      g.column_name = :moneda
+      g.row_name    = :responsable
+      g.value_name  = :cantidad
+    end
+    @balance_responsables.build
 
     # Incluir funciones para gravatar
     # TODO: usar avatars.io para encontrar avatares en otros servicios?

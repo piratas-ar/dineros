@@ -38,7 +38,9 @@
 .tabbable
   %ul.nav.nav-tabs
     %li.active{ role: 'presentation' }
-      = link_to 'Balance', '#balance', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'balance'}
+      = link_to 'Grupos', '#grupos', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'grupos'}
+    %li{ role: 'presentation' }
+      = link_to 'Responsables', '#responsables', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'responsables'}
     %li{ role: 'presentation' }
       = link_to 'Movimientos', '#movimientos', {'data-toggle'=>'tab', 'role' => 'tab', 'aria-controls' => 'movimientos'}
     %li{ role: 'presentation' }
@@ -52,8 +54,10 @@
 
 
   .tab-content
-    #balance.tab-pane.active{ role: 'tabpanel' }
+    #grupos.tab-pane.active{ role: 'tabpanel' }
       = partial 'dinero/balance_grupal'
+    #responsables.tab-pane{ role: 'tabpanel' }
+      = partial 'dinero/balance_responsables'
     #movimientos.tab-pane{ role: 'tabpanel' }
       = partial 'dinero/movimientos'
     #ingreso.tab-pane{ role: 'tabpanel' }
