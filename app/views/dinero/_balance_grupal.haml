@@ -3,7 +3,10 @@
     %tr
       %th Grupo
       - skip_columns = []
-      - @balance_grupal.columns.each do |b|
+      - @balance_grupal.columns.each_with_index do |b, i|
+        - if b.data.select { |d| d.is_a?(Dinero) && d.cantidad != 0 }.empty?
+          - skip_columns << i
+          - next
         %th
           %a{href: url(:index, params.merge('moneda' => b.header))}= b.header
 
@@ -16,7 +19,8 @@
       %tr
         %td
           %a{href: url_for(:index, params.merge('grupo' => b.header))}= b.header
-        - b.data.each do |c|
+        - b.data.each_with_index do |c, i|
+          - next if skip_columns.include? i
           - if c
             %td= Money.thousands_separator c.cantidad
           - else
