@@ -2,8 +2,11 @@
 = paginate @dineros
 %h2
   Movimientos del tesoro
-  - if @grupo
+  - if @responsable
     de
+    = @responsable
+  - if @grupo
+    en
     = @grupo
 
 .panel.panel-default
