@@ -4,7 +4,8 @@
       %th Grupo
       - skip_columns = []
       - @balance_grupal.columns.each do |b|
-        %th= b.header
+        %th
+          %a{href: url(:index, params.merge('moneda' => b.header))}= b.header
 
   %tfoot
     %tr
@@ -14,7 +15,7 @@
     - @balance_grupal.rows.each do |b|
       %tr
         %td
-          %a{href: url_for(:index, grupo: b.header)}= b.header
+          %a{href: url_for(:index, params.merge('grupo' => b.header))}= b.header
         - b.data.each do |c|
           - if c
             %td= Money.thousands_separator c.cantidad

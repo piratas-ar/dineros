@@ -1,11 +1,15 @@
 Dineros::App.controllers do
   get :index, map: '/' do
+    @dineros = Dinero.all
 
     # Filtros
-    @grupo = params[:grupo] unless params[:grupo].blank?
+    [ :grupo, :moneda ].each do |filtro|
+      unless params[filtro].blank?
+        instance_variable_set('@' + filtro.to_s, params[filtro])
+        @dineros = @dineros.where(Hash[filtro, params[filtro]])
+      end
+    end
 
-    @dineros = Dinero.all
-    @dineros = @dineros.where(grupo: @grupo) if @grupo
     # Obtener todo el historial
     @dineros = @dineros
       .order(created_at: :desc)
