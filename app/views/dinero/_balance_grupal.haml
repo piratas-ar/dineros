@@ -13,7 +13,8 @@
   %tbody
     - @balance_grupal.rows.each do |b|
       %tr
-        %td= b.header
+        %td
+          %a{href: url_for(:index, grupo: b.header)}= b.header
         - b.data.each do |c|
           - if c
             %td= Money.thousands_separator c.cantidad

@@ -10,14 +10,17 @@
         %h1 No hay un choto
 
     .col-md-6
-      - if @balances_resumen.size == 1
-        %h2= @balances_resumen.first.dinero.format
-      - else
+      - if @grupo
+        %h2
+          En
+          = @grupo
+          tenemos
+      -else
         %h2 Tenemos
-        %ul.list-inline
-          - @balances_resumen.each do |total|
-            - next if total.cantidad == 0
-            %li= total.dinero.format
+      %ul.list-inline
+        - @balances_resumen.each do |total|
+          - next if total.cantidad == 0
+          %li= total.dinero.format
 
 .tabbable
   %ul.nav.nav-tabs
@@ -52,6 +55,7 @@
 %script{src: 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'}
 %script{src: '/javascripts/bootstrap.min.js'}
 %script{src: 'https://code.jquery.com/ui/1.11.4/jquery-ui.js'}
+%script{src: '/javascripts/application.js'}
 :javascript
   $(function() {
     var responsables = [ '#{Dinero.pluck(:responsable).uniq.join('\',\'')}' ];

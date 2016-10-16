@@ -1,12 +1,18 @@
 Dineros::App.controllers do
   get :index, map: '/' do
-    # Obtener todo el historial
+
+    # Filtros
+    @grupo = params[:grupo] unless params[:grupo].blank?
+
     @dineros = Dinero.all
-                     .order(created_at: :desc)
-                     .page(params[:page])
-                     .per(params[:limit] || 10)
+    @dineros = @dineros.where(grupo: @grupo) if @grupo
+    # Obtener todo el historial
+    @dineros = @dineros
+      .order(created_at: :desc)
+      .page(params[:page])
+      .per(params[:limit] || 10)
     # Mostrar el total
-    @total = Dinero.sum(:cantidad)
+    @total = @dineros.sum(:cantidad)
 
     # Obtener una tabla así:
     #
@@ -21,7 +27,7 @@ Dineros::App.controllers do
     fields = [:responsable, :moneda, sum_ingreso, sum_egreso, sum_cantidad]
 
     @balances = Dinero.group(:moneda).group(:responsable).select(fields)
-    @balances_resumen = Dinero.group(:moneda).select(fields)
+    @balances_resumen = @dineros.group(:moneda).select(fields)
     @balance_grupal = PivotTable::Grid.new do |g|
       g.source_data = Dinero.group(:grupo)
                             .group(:moneda)

@@ -5,7 +5,7 @@
         size: 70, title: dinero.nombre, secure: true ) }
       %h4= dinero.dinero.format
       %p
-        = dinero.grupo
+        %a{href: url(:index, params.merge('grupo' => dinero.grupo))}= dinero.grupo
         \/
         = dinero.nombre
     .col-sm-8
