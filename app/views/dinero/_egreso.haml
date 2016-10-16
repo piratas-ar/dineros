@@ -1,40 +1,43 @@
 -# encoding: utf-8
 %h2 Egreso del tesoro
+%p
+  Cuando egresan dineros, la persona que era responsable los saca del
+  sistema, es decir que se restan del total.
 
--form_for :dinero, url(:dinero, :desembolsar), class: 'form-horizontal col-md-6' do |f|
-  .form-group
+-form_for :dinero, url(:dinero, :desembolsar), class: 'col-md-6' do |f|
+  .form-group.has-feedback
+    %label Esta persona
     =f.email_field :responsable,
-                   placeholder: 'Pirata que desembolsó dinero',
+                   placeholder: 'dirección de mail',
                    class: 'form-control responsables',
                    value: params[:responsable]
-    %span.help-inline
-      Dirección de correo electrónico de la pirata que desembolsó el dinero
+    %span.form-control-feedback.glyphicon.glyphicon-menu-down
 
   .form-group
+    %label usó
     =f.text_field :cantidad,
                   placeholder: 'Dinero!',
                   class: 'form-control',
                   value: params[:cantidad]
-    %span.help-inline
-      Cantidad desembolsada (ej: 120.25)
 
-  .form-group
+  .form-group.has-feedback
+    %label en forma de
     =f.text_field :moneda,
                   placeholder: 'Doblones u otra moneda',
                   class: 'form-control monedas',
                   value: params[:moneda]
-    %span.help-inline
-      (ARS:pesos argentinos, FC:FairCoin, BT:BitCoins, etc)
+    %span.form-control-feedback.glyphicon.glyphicon-menu-down
 
-  .form-group
+  .form-group.has-feedback
+    %label para el proyecto
     =f.text_field :grupo,
-                  placeholder: 'Proyecto',
+                  placeholder: 'uno',
                   class: 'form-control grupos',
                   value: params[:grupo]
-    %span.help-inline
-      Proyecto
+    %span.form-control-feedback.glyphicon.glyphicon-menu-down
 
   .form-group
+    %label con motivo de
     =f.text_area :comentario,
                  placeholder: 'Por que motivo, o para que uso, desembolsó el dinero',
                  class: 'form-control',
