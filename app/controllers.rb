@@ -14,7 +14,7 @@ Dineros::App.controllers do
       next if params[filtro_empieza_por].blank?
 
       instance_variable_set('@' + filtro_empieza_por.to_s, params[filtro_empieza_por])
-      @dineros = @dineros.where("#{filtro_empieza_por} like :valor", valor: params[filtro_empieza_por] + '%')
+      @dineros = @dineros.where("#{filtro_empieza_por} like ?", params[filtro_empieza_por] + '%')
     end
 
     # Obtener todo el historial

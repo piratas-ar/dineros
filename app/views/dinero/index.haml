@@ -21,6 +21,19 @@
         - @balances_resumen.each do |total|
           - next if total.cantidad == 0
           %li= total.dinero.format
+.row
+  %p.pull-right
+    Filtros (click para remover)
+    %a.btn.btn-success.btn-xs{href: url(:index)}
+      &times;
+      todos
+    - %w(responsable created_at grupo moneda).each do |filtro|
+      - next if instance_variable_get('@' + filtro).nil?
+      %a.btn.btn-info.btn-xs{href: url(:index, params.reject { |f| f == filtro })}
+        &times;
+        = filtro
+        \=
+        = params[filtro]
 
 .tabbable
   %ul.nav.nav-tabs
