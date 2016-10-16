@@ -3,6 +3,7 @@ set :deploy_to, '/srv/http/dineros.partidopirata.com.ar'
 set :branch, ENV.fetch('branch', 'develop')
 
 set :rails_env, 'production'
+set :rbenv_ruby, '2.3.0'
 
 # en Parabola /tmp está montado noexec
 set :tmp_dir, "#{fetch :deploy_to}/tmp"
