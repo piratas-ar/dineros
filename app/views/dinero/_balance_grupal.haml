@@ -1,3 +1,18 @@
+%h2
+  Balance:
+  - if @responsable
+    = @responsable
+    tiene
+  - if @grupo
+    en
+    = @grupo
+  - if @moneda
+    en
+    = @moneda
+  - if @created_at
+    el
+    = @created_at
+
 %table.table.table-condensed.table-striped
   %thead
     %tr

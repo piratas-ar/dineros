@@ -1,14 +1,20 @@
 -# encoding: utf-8
-= paginate @dineros
 %h2
   Movimientos del tesoro
   - if @responsable
-    de
+    hechos por
     = @responsable
   - if @grupo
     en
     = @grupo
+  - if @moneda
+    en
+    = @moneda
+  - if @created_at
+    el
+    = @created_at
 
+= paginate @dineros
 .panel.panel-default
   .list-group
     -@dineros.each do |dinero|

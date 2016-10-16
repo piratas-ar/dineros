@@ -40,7 +40,7 @@ Dineros::App.controllers do
     @balances = Dinero.group(:moneda).group(:responsable).select(fields)
     @balances_resumen = @dineros.group(:moneda).select(fields)
     @balance_grupal = PivotTable::Grid.new do |g|
-      g.source_data = Dinero.group(:grupo)
+      g.source_data = @dineros.group(:grupo)
                             .group(:moneda)
                             .select([:grupo, :moneda,
                                      'sum(cantidad) as cantidad'])
