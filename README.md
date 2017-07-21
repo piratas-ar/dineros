@@ -22,6 +22,7 @@ Configuración
   # opcional si queremos tener la llave de dineros separada de la
   # nuestra o de otras aplicaciones
   GNUPGHOME=./gnupg
+  SECRET="verdura y sarasa"
 ```
 
 * Instalar las gemas
