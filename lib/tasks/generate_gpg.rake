@@ -28,7 +28,10 @@ namespace :gpg do
 
       STDERR.print stderr.read
     end
+  end
 
+  desc 'Exporta la llave pública'
+  task :export do
     sh "#{gpg} --armor --export dineros@#{ENV['FQDN']} >public/dineros.asc"
   end
 end

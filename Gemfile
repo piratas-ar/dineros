@@ -18,9 +18,11 @@ gem 'kaminari', require: 'kaminari/sinatra'
 gem 'pivot_table'
 
 group :development do
+  gem 'bcrypt_pbkdf'
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'
+  gem 'rbnacl', '< 5.0'
   # debug
   gem 'pry'
 end
